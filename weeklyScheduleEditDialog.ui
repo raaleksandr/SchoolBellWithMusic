@@ -179,7 +179,14 @@
       <item>
        <widget class="QPushButton" name="chooseFilePushButton">
         <property name="text">
-         <string>PushButton</string>
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="playSoundPushButton">
+        <property name="text">
+         <string>Play</string>
         </property>
        </widget>
       </item>
