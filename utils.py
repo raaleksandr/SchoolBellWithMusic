@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, calendar
 
 from PyQt6 import uic
 
@@ -21,3 +21,6 @@ def isRunFromPyInstallerExeWithOneFileOption():
 
     except Exception as e:
         return False
+
+def getWeekdayNameByIndex(weekdayIndex):
+    return list(calendar.day_name)[weekdayIndex]
