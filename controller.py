@@ -90,4 +90,6 @@ class SchoolBellController:
         self.play_sounds_controller.play_sound_file_by_path(file_name_with_full_path)
 
     def start_play_sounds_thread(self):
-        threading.Timer(1, main_sounds_thread, [self])
+        thread = threading.Timer(1, main_sounds_thread, [self])
+        thread.setDaemon(True)
+        thread.start()
