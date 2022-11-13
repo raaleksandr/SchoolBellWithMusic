@@ -4,6 +4,7 @@ import sys
 from mainwindow import MainWindow
 from weekly_schedule_edit import WeeklyScheduleEditDialog
 from model import SchoolBellModel
+from utils import getWeekdayNameByIndex
 
 class SchoolBellController:
     def __init__(self, application_argv):
@@ -36,10 +37,12 @@ class SchoolBellController:
             if not self.isOkKeyPressedInDialog(button):
                 return
 
-            new_record = { "start_weekday_index" : dlg.ui.startWeekdayComboBox.currentIndex(), \
+            new_record = { "description" : dlg.ui.descriptionLineEdit.text(), \
+                           "start_weekday_index" : dlg.ui.startWeekdayComboBox.currentIndex(), \
                            "end_weekday_index" : dlg.ui.endWeekdayComboBox.currentIndex(), \
                            "time" : dlg.ui.timeEdit.time(), \
-                           "description" : "dummy" }
+                           "file_name" : dlg.ui.fileNameLineEdit.text() \
+                            }
 
             self.model.add_new_record(new_record)
             self.refresh_grid()
@@ -55,19 +58,18 @@ class SchoolBellController:
 
     def refresh_grid(self):
 
-        #row = 0
-        #self.main_window.ui.scheduleTable.setRowCount(50)
-        #self.main_window.ui.scheduleTable.insertRow(0)
-        #self.main_window.ui.scheduleTable.setItem(row, 0, QTableWidgetItem("test1"))
-        #self.main_window.ui.scheduleTable.setItem(row, 1, QTableWidgetItem("test2"))
-        #self.main_window.ui.scheduleTable.setItem(row, 2, QTableWidgetItem("test3"))
+        self.main_window.ui.scheduleTable.setRowCount(0)
 
         row = 0
         for record in self.model.records:
             self.main_window.ui.scheduleTable.insertRow(row)
-            self.main_window.ui.scheduleTable.setItem(row, 0, QTableWidgetItem(record["start_weekday_index"]))
-            self.main_window.ui.scheduleTable.setItem(row, 1, QTableWidgetItem(str(record["time"])))
+            self.main_window.ui.scheduleTable.setItem(row, 0, QTableWidgetItem(self.output_weekdays(record)))
+            self.main_window.ui.scheduleTable.setItem(row, 1, QTableWidgetItem(record["time"].toString()))
             self.main_window.ui.scheduleTable.setItem(row, 2, QTableWidgetItem(record["description"]))
             row = row + 1
 
-        self.main_window.ui.scheduleTable.repaint()
+        #self.main_window.ui.scheduleTable.repaint()
+
+    def output_weekdays(self, record):
+        return getWeekdayNameByIndex(record["start_weekday_index"]) + ' - ' + \
+               getWeekdayNameByIndex(record["end_weekday_index"])
