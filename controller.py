@@ -1,10 +1,15 @@
 from PyQt6.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 import sys
+import traceback
+import threading
 
 from mainwindow import MainWindow
 from weekly_schedule_edit import WeeklyScheduleEditDialog
 from model import SchoolBellModel
 from utils import getWeekdayNameByIndex
+from play_sounds.play_sounds_controller import PlaySoundsController
+from play_sounds.play_sounds_thread import main_sounds_thread
+
 
 class SchoolBellController:
     def __init__(self, application_argv):
@@ -12,6 +17,7 @@ class SchoolBellController:
             self.app = QApplication(sys.argv)
             self.main_window = MainWindow(self)
             self.model = SchoolBellModel()
+            self.play_sounds_controller = PlaySoundsController(self.model)
         except Exception as e:
             self.handle_error(e)
 
@@ -19,19 +25,22 @@ class SchoolBellController:
         try:
             self.main_window.show()
             self.refresh_grid()
+            self.start_play_sounds_thread()
             sys.exit(self.app.exec())
         except Exception as e:
             self.handle_error(e)
 
     def handle_error(self, exception):
         try:
-            QMessageBox.critical(self.main_window, "Error", "Error: '" + str(exception) + "'");
+            print(exception.__traceback__)
+            print(traceback.format_exc())
+            QMessageBox.critical(self.main_window, "Error", "Error: '" + str(exception) + "'")
         except Exception as e:
             print(e)
 
     def handle_new_record_button(self):
         try:
-            dlg = WeeklyScheduleEditDialog(self.main_window)
+            dlg = WeeklyScheduleEditDialog(self)
             button = dlg.exec()
 
             if not self.isOkKeyPressedInDialog(button):
@@ -73,3 +82,12 @@ class SchoolBellController:
     def output_weekdays(self, record):
         return getWeekdayNameByIndex(record["start_weekday_index"]) + ' - ' + \
                getWeekdayNameByIndex(record["end_weekday_index"])
+
+    def play_sounds_if_time_has_come(self):
+        self.play_sounds_controller.play_if_time_has_come()
+
+    def play_sound_file_for_preview(self, file_name_with_full_path):
+        self.play_sounds_controller.play_sound_file_by_path(file_name_with_full_path)
+
+    def start_play_sounds_thread(self):
+        threading.Timer(1, main_sounds_thread, [self])

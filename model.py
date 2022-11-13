@@ -5,8 +5,14 @@ class SchoolBellModel:
     def add_new_record(self, record_data):
 
         if self.check_record_exists(record_data):
-            raise Exception('Record at the same days and time already exists')
+            raise Exception("Record with the same days and time already exists")
 
+        new_record = { "start_weekday_index" : record_data["start_weekday_index"], \
+                       "end_weekday_index" : record_data["end_weekday_index"], \
+                       "time" : record_data["time"], \
+                       "description" : record_data["description"], \
+                       "file_name" : record_data["file_name"], \
+                       "active" : True }
         self.records.append(record_data)
 
     def find_record_index(self, record_data):
