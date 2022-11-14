@@ -6,7 +6,7 @@ class PlaySoundsModel:
         self.pygame = pygame
         self.pygame.mixer.init()
 
-    def play_the_sound(self,path_to_sound_file):
+    def play_the_sound(self, path_to_sound_file):
         try:
             self.pygame.mixer.music.load(path_to_sound_file)
             self.pygame.mixer.music.play()
