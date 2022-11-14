@@ -1,10 +1,13 @@
 import pytest
 
 import datetime
+from datetime import date
 from PyQt6.QtCore import QTime
+from datetime import datetime as datetime_attr
 
 from play_sounds.play_sounds_controller import PlaySoundsController
 from model import SchoolBellModel
+
 
 class TestPlaySoundsController:
 
@@ -39,13 +42,17 @@ class TestPlaySoundsController:
         assert rec1['end_weekday_index'] == rec2['end_weekday_index']
         assert rec1['time'] == rec2['time']
 
+CORRECT_TIME_HOUR = 7
+CORRECT_TIME_MINUTE = 20
+
 class TestPlaySoundsControllerMethodPlayIfTimeHasCome:
     @pytest.fixture
     def controller_with_test_recs_in_model(self):
         model = SchoolBellModel()
 
         model_record = \
-            dict(start_weekday_index=1, end_weekday_index=1, time=QTime(7, 20, 0), \
+            dict(start_weekday_index=1, end_weekday_index=1, \
+                 time=QTime(CORRECT_TIME_HOUR, CORRECT_TIME_MINUTE, 0), \
                  description='test record', file_name='test_sound.mp3')
         model.add_new_record(model_record)
 
@@ -53,17 +60,37 @@ class TestPlaySoundsControllerMethodPlayIfTimeHasCome:
         return play_sounds_controller
 
     @pytest.fixture
-    def time_and_weekday_matches(self, mocker):
-        datetime_mock = mocker.patch('datetime.datetime.now')
-        datetime_mock.return_value = datetime.datetime(2016,4,30,3,20,6)
+    def patch_datetime_now_weekday(self, monkeypatch):
+        class mock_now:
+            @classmethod
+            def weekday(cls):
+                return 1
 
-        time_mock = mocker.patch('datetime.datetime.now.time')
-        time_mock.return_value = datetime.time(10,20,0)
+            @classmethod
+            def time(cls):
+                return datetime.time(CORRECT_TIME_HOUR, CORRECT_TIME_MINUTE, 00)
 
-        weekday_mock = mocker.patch('datetime.datetime.now.weekday')
-        weekday_mock.return_value = 1
+            @classmethod
+            def date(cls):
+                DUMMY_DATE = datetime.datetime.date(2022, 11, 14)
+                return DUMMY_DATE
 
-    def test_ring_time_equals(self, mocker, controller_with_test_recs_in_model, time_and_weekday_matches):
+        class mock_datetime:
+            @classmethod
+            def now(cls):
+                return mock_now()
+
+            @classmethod
+            def combine(cls, date_arg, time_arg):
+                return datetime_attr.combine(date_arg, time_arg)
+
+            @classmethod
+            def date(cls, year_arg, month_arg, date_arg):
+                return date(year_arg, month_arg, date_arg)
+
+        monkeypatch.setattr(datetime, 'datetime', mock_datetime)
+
+    def test_ring_time_equals(self, mocker, controller_with_test_recs_in_model, patch_datetime_now_weekday):
         cut = controller_with_test_recs_in_model
 
         playsound_mock = mocker.patch('play_sounds.play_sounds_model.PlaySoundsModel.play_the_sound')
@@ -71,3 +98,5 @@ class TestPlaySoundsControllerMethodPlayIfTimeHasCome:
         cut.play_if_time_has_come()
 
         playsound_mock.assert_called_once_with('test_sound.mp3')
+
+    def test_not_rings_time_less(self, mocker, controller_with_test_recs_in_model, patch_datetime_now_weekday):

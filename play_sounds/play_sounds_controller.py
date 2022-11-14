@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 
 from play_sounds.play_sounds_model import PlaySoundsModel
 
@@ -23,15 +23,15 @@ class PlaySoundsController:
             self.play_the_sound(rec)
 
     def check_weekday_matches(self, rec):
-        weekday = datetime.now().weekday()
+        weekday = datetime.datetime.now().weekday()
         return ( weekday >= rec['start_weekday_index'] \
             and weekday <= rec['end_weekday_index'] )
 
     def time_has_come(self, rec):
         time_from_rec = rec['time'].toPyTime()
-        current_time = datetime.now().time()
+        current_time = datetime.datetime.now().time()
         diff_time = self.get_time_difference_in_seconds_time1_minus_time2(current_time, time_from_rec)
-        if ( diff_time < 0 and abs( diff_time ) < 1 ) or diff_time > 0:
+        if ( diff_time < 0 and abs( diff_time ) < 1 ) or diff_time >= 0:
             return True
         else:
             return False
@@ -60,7 +60,7 @@ class PlaySoundsController:
         new_already_played_rec = {'start_weekday_index': rec['start_weekday_index'], \
                                   'end_weekday_index': rec['end_weekday_index'], \
                                   'time': rec['time'], \
-                                  'played_date_time': datetime.now()}
+                                  'played_date_time': datetime.datetime.now()}
 
         self.already_played_records.append(new_already_played_rec)
 
@@ -69,8 +69,8 @@ class PlaySoundsController:
 
     @staticmethod
     def get_time_difference_in_seconds_time1_minus_time2(time1, time2):
-        dateTime1 = datetime.combine(datetime.now().date(), time1)
-        dateTime2 = datetime.combine(datetime.now().date(), time2)
+        dateTime1 = datetime.datetime.combine(datetime.datetime.now().date(), time1)
+        dateTime2 = datetime.datetime.combine(datetime.datetime.now().date(), time2)
 
         dateTimeDifference = dateTime1 - dateTime2
 
