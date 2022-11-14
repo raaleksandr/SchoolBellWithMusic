@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Program started making scheduled sounds">
-      <change afterPath="$PROJECT_DIR$/play_sounds/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SchoolBell.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SchoolBell.iml" afterDir="false" />
+    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Started to write unit tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,14 +33,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "E:/asana/myprogs/python/desktop/SchoolBell",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/asana/myprogs/python/desktop/SchoolBell&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\asana\myprogs\python\desktop\SchoolBell\play_sounds" />
@@ -73,51 +68,51 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_model.TestModel.test_add_new_record_and_existed_records_before_with_other_key" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_play_sounds_controller.TestPlaySoundsController" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SchoolBell" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play_sounds" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_model.TestModel.test_add_new_record_and_existed_records_before_with_other_key&quot;" />
+      <option name="_new_target" value="&quot;test_play_sounds_controller.TestPlaySoundsController&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_model.TestModel.test_find_record_index_when_exists" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SchoolBell" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play_sounds" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_model.TestModel.test_find_record_index_when_exists&quot;" />
+      <option name="_new_target" value="&quot;test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_model.TestModel.test_find_record_index_when_not_exists" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_ring_time_equals" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SchoolBell" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play_sounds" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_model.TestModel.test_find_record_index_when_not_exists&quot;" />
+      <option name="_new_target" value="&quot;test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_ring_time_equals&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -172,19 +167,19 @@
     <list>
       <item itemvalue="Python.SchoolBellWithMusic" />
       <item itemvalue="Python tests.pytest in SchoolBell" />
-      <item itemvalue="Python tests.pytest for test_model.TestModel.test_add_new_record_and_existed_records_before_with_other_key" />
-      <item itemvalue="Python tests.pytest for test_model.TestModel.test_find_record_index_when_exists" />
-      <item itemvalue="Python tests.pytest for test_model.TestModel.test_find_record_index_when_not_exists" />
+      <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsController" />
+      <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome" />
       <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsController.test_get_time_difference_in_seconds_time1_minus_time2" />
       <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsController.test_play_the_sound" />
+      <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_ring_time_equals" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_ring_time_equals" />
+        <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome" />
+        <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsController" />
         <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsController.test_play_the_sound" />
         <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsController.test_get_time_difference_in_seconds_time1_minus_time2" />
-        <item itemvalue="Python tests.pytest for test_model.TestModel.test_add_new_record_and_existed_records_before_with_other_key" />
-        <item itemvalue="Python tests.pytest for test_model.TestModel.test_find_record_index_when_not_exists" />
-        <item itemvalue="Python tests.pytest for test_model.TestModel.test_find_record_index_when_exists" />
       </list>
     </recent_temporary>
   </component>
@@ -239,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668359024460</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Started to write unit tests">
+      <created>1668384978071</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1668384978071</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -259,6 +261,7 @@
     <MESSAGE value="Now we press add, edit form opens, we press ok and records is added to the grid" />
     <MESSAGE value="First version with the play sounds thread" />
     <MESSAGE value="Program started making scheduled sounds" />
-    <option name="LAST_COMMIT_MESSAGE" value="Program started making scheduled sounds" />
+    <MESSAGE value="Started to write unit tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started to write unit tests" />
   </component>
 </project>
