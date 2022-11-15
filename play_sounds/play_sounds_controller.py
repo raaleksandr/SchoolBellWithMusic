@@ -51,7 +51,7 @@ class PlaySoundsController:
                     and rec1['time'] == rec2['time'] )
 
     def how_many_minutes_ago_played(self, already_played_record):
-        time_diff = datetime.now() - already_played_record['played_date_time']
+        time_diff = datetime.datetime.now() - already_played_record['played_date_time']
         return time_diff.total_seconds() / 60
 
     def play_the_sound(self, rec):
