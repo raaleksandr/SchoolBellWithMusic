@@ -172,6 +172,20 @@ class TestPlaySoundsControllerMethodPlayIfTimeHasCome:
 
         playsound_mock.assert_not_called()
 
+    @pytest.mark.parametrize('scheduled_rec_time', ['23:55:00'])
+    @pytest.mark.parametrize('fake_now_weekday', [1])
+    @pytest.mark.parametrize('fake_now_date', ['15.11.2022'])
+    @pytest.mark.parametrize('fake_now_time', ['23:57:00'])
+    def test_not_rings_time_is_more(self, mocker, controller_with_test_recs_in_model, \
+                                              patch_datetime_now_weekday):
+        cut = controller_with_test_recs_in_model
+
+        playsound_mock = mocker.patch('play_sounds.play_sounds_model.PlaySoundsModel.play_the_sound')
+
+        cut.play_if_time_has_come()
+
+        playsound_mock.assert_not_called()
+
     def compose_already_played_rec(self, weekday, time_as_string, played_date_time_as_string):
         time_split_at_hour_minute = parse_time(time_as_string)
         played_date_time = datetime_attr.strptime(played_date_time_as_string, '%d.%m.%Y %H:%M:%S')

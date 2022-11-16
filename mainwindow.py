@@ -11,11 +11,15 @@ class MainWindow(QMainWindow):
             self.makeGridReadOnly()
 
             self.ui.addPushButton.clicked.connect(self.addPushButtonClicked)
+            self.ui.testPlayMusicFolderPushButton.clicked.connect(self.test_button)
         except Exception as e:
             print(e)
 
     def addPushButtonClicked(self, event):
         self.controller.handle_new_record_button()
+
+    def test_button(self, event):
+        self.controller.test_play_music()
 
     def makeGridReadOnly(self):
         self.ui.scheduleTable.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)

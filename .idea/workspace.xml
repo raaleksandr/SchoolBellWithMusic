@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Continued unit tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainwindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainwindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/mainwindow.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weeklyScheduleEditDialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/weeklyScheduleEditDialog.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,22 +89,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_another_week" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="SchoolBell" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play_sounds" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_another_week&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_because_already_played" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SchoolBell" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -113,6 +102,22 @@
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_because_already_played&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_time_is_more" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="SchoolBell" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play_sounds" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_time_is_more&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -167,7 +172,7 @@
     <list>
       <item itemvalue="Python.SchoolBellWithMusic" />
       <item itemvalue="Python tests.pytest in SchoolBell" />
-      <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_another_week" />
+      <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_time_is_more" />
       <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_because_already_played" />
       <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_time_less_3sec" />
       <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome" />
@@ -175,11 +180,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_time_is_more" />
         <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_time_less_3sec" />
         <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome" />
         <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_ring_time_equals" />
         <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_because_already_played" />
-        <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerMethodPlayIfTimeHasCome.test_not_rings_another_week" />
       </list>
     </recent_temporary>
   </component>
@@ -248,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668465380220</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Continued unit tests">
+      <created>1668552251815</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1668552251816</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,5 +283,16 @@
     <MESSAGE value="Started to write unit tests" />
     <MESSAGE value="Continued unit tests" />
     <option name="LAST_COMMIT_MESSAGE" value="Continued unit tests" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mainwindow.py</url>
+          <line>21</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
