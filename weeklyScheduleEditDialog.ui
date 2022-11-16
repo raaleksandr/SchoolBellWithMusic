@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>521</width>
-    <height>276</height>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <x>10</x>
      <y>10</y>
      <width>501</width>
-     <height>221</height>
+     <height>171</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout">
@@ -205,7 +205,7 @@
    <property name="geometry">
     <rect>
      <x>320</x>
-     <y>240</y>
+     <y>410</y>
      <width>193</width>
      <height>29</height>
     </rect>
@@ -216,6 +216,73 @@
    <property name="standardButtons">
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
+  </widget>
+  <widget class="QRadioButton" name="singleFileRadioButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>190</y>
+     <width>281</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Play single file once</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="musicFolderRadioButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>220</y>
+     <width>401</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Play all files in folder with rotation during time (music)</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="formLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>250</y>
+     <width>501</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="formLayout_2">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label1">
+      <property name="text">
+       <string>Label1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="lineEdit"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label2">
+      <property name="text">
+       <string>Label2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QComboBox" name="comboBox"/>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

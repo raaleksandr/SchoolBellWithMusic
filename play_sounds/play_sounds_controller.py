@@ -9,6 +9,7 @@ class PlaySoundsController:
         self.play_sounds_model = PlaySoundsModel()
 
     def play_if_time_has_come(self):
+        is_played = False
         for rec in self.model.records:
 
             if self.already_played_recently(rec):
@@ -21,6 +22,9 @@ class PlaySoundsController:
                 continue
 
             self.play_the_sound(rec)
+            is_played = True
+
+        return is_played
 
     def check_weekday_matches(self, rec):
         weekday = datetime.datetime.now().weekday()
@@ -31,7 +35,7 @@ class PlaySoundsController:
         time_from_rec = rec['time'].toPyTime()
         current_time = datetime.datetime.now().time()
         diff_time = self.get_time_difference_in_seconds_time1_minus_time2(current_time, time_from_rec)
-        if ( diff_time < 0 and abs( diff_time ) < 1 ) or diff_time >= 0:
+        if diff_time >= 0 and diff_time <= 5:
             return True
         else:
             return False
@@ -76,3 +80,12 @@ class PlaySoundsController:
 
         return dateTimeDifference.total_seconds()
 
+    def test_play_music(self):
+        files = []
+        #files.append(r'E:\asana\myprogs\python\desktop\SchoolBell\sounds\bell1.mp3')
+        #files.append(r'E:\asana\myprogs\python\desktop\SchoolBell\sounds\bell2.mp3')
+        #files.append(r'E:\asana\myprogs\python\desktop\SchoolBell\sounds\bell3.mp3')
+        files.append(r'D:\_toarchive\tmp\school-bell\sound_files_for_test\Recording1.mp3')
+        files.append(r'D:\_toarchive\tmp\school-bell\sound_files_for_test\Recording2.mp3')
+        files.append(r'D:\_toarchive\tmp\school-bell\sound_files_for_test\Recording3.mp3')
+        self.play_sounds_model.play_files_as_carusel(files)

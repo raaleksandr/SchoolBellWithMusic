@@ -39,6 +39,7 @@ class SchoolBellController:
             print(e)
 
     def handle_new_record_button(self):
+
         try:
             dlg = WeeklyScheduleEditDialog(self)
             button = dlg.exec()
@@ -84,7 +85,8 @@ class SchoolBellController:
                getWeekdayNameByIndex(record["end_weekday_index"])
 
     def play_sounds_if_time_has_come(self):
-        self.play_sounds_controller.play_if_time_has_come()
+        if self.play_sounds_controller.play_if_time_has_come():
+            self.main_window.statusBar().showMessage("Sound is playing", 5000)
 
     def play_sound_file_for_preview(self, file_name_with_full_path):
         self.play_sounds_controller.play_sound_file_by_path(file_name_with_full_path)
@@ -93,3 +95,6 @@ class SchoolBellController:
         thread = threading.Timer(1, main_sounds_thread, [self])
         thread.setDaemon(True)
         thread.start()
+
+    def test_play_music(self):
+        self.play_sounds_controller.test_play_music()
