@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Continued unit tests">
+    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Finished tests and explored how to play sound files in queue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainwindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainwindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/mainwindow.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weeklyScheduleEditDialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/weeklyScheduleEditDialog.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weekly_schedule_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/weekly_schedule_edit.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668552251816</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Finished tests and explored how to play sound files in queue">
+      <created>1668639325361</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1668639325361</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -282,17 +284,7 @@
     <MESSAGE value="Program started making scheduled sounds" />
     <MESSAGE value="Started to write unit tests" />
     <MESSAGE value="Continued unit tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Continued unit tests" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/mainwindow.py</url>
-          <line>21</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Finished tests and explored how to play sound files in queue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished tests and explored how to play sound files in queue" />
   </component>
 </project>
