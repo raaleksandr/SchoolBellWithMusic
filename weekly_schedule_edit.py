@@ -12,8 +12,8 @@ class WeeklyScheduleEditDialog(QDialog):
 
         self.ui.chooseFilePushButton.clicked.connect(self.chooseFilePushButtonClicked)
         self.ui.playSoundPushButton.clicked.connect(self.playSoundPushButtonClicked)
-
-        #pygame.mixer.init()
+        self.ui.chooseFolderPushButton.clicked.connect(self.chooseFolderPushButtonClicked)
+        self.ui.musicFolderWidget.setVisible(False)
 
     def chooseFilePushButtonClicked(self):
         try:
@@ -30,8 +30,6 @@ class WeeklyScheduleEditDialog(QDialog):
             if filename_sound == '':
                 return
 
-            #pygame.mixer.music.load(filename_sound)
-            #pygame.mixer.music.play()
             self.controller.play_sound_file_for_preview(filename_sound)
         except Exception as e:
             if str(e) == 'ModPlug_Load failed':
@@ -39,3 +37,8 @@ class WeeklyScheduleEditDialog(QDialog):
                                                          "wav etc)")
             else:
                 self.main_window.controller.handle_error(e)
+
+    def chooseFolderPushButtonClicked(self):
+        directory = QFileDialog.getExistingDirectory(caption='Choose directory')
+        if directory:
+            self.ui.folderNameLineEdit.setText(directory)
