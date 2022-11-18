@@ -9,6 +9,7 @@ from model import SchoolBellModel
 from utils import getWeekdayNameByIndex
 from play_sounds.play_sounds_controller import PlaySoundsController
 from play_sounds.play_sounds_thread import main_sounds_thread
+from constants import REC_TYPE_SINGLE_FILE, REC_TYPE_MUSIC_FOLDER
 
 
 class SchoolBellController:
@@ -40,6 +41,30 @@ class SchoolBellController:
 
     def handle_new_record_button(self):
 
+        def add_new_record_single_file():
+            new_record = { 'description' : dlg.ui.descriptionLineEdit.text(), \
+                           'start_weekday_index' : dlg.ui.startWeekdayComboBox.currentIndex(), \
+                           'end_weekday_index' : dlg.ui.endWeekdayComboBox.currentIndex(), \
+                           'start_time' : dlg.ui.timeEdit.time(), \
+                           'end_time' : None, \
+                           'rec_type' : REC_TYPE_SINGLE_FILE, \
+                           'file_name' : dlg.ui.fileNameLineEdit.text() \
+                          }
+
+            self.model.add_new_record(new_record)
+
+        def add_new_record_music_folder():
+            new_record = { 'description' : dlg.ui.descriptionLineEdit.text(), \
+                           'start_weekday_index' : dlg.ui.startWeekdayComboBox.currentIndex(), \
+                           'end_weekday_index' : dlg.ui.endWeekdayComboBox.currentIndex(), \
+                           'start_time' : dlg.ui.startTimeEdit.time(),
+                           'end_time' : dlg.ui.endTimeEdit.time(),
+                           'rec_type' : REC_TYPE_MUSIC_FOLDER,
+                           'folder_name' : dlg.ui.fileNameLineEdit.text() \
+                          }
+
+            self.model.add_new_record(new_record)
+
         try:
             dlg = WeeklyScheduleEditDialog(self)
             button = dlg.exec()
@@ -47,14 +72,11 @@ class SchoolBellController:
             if not self.isOkKeyPressedInDialog(button):
                 return
 
-            new_record = { "description" : dlg.ui.descriptionLineEdit.text(), \
-                           "start_weekday_index" : dlg.ui.startWeekdayComboBox.currentIndex(), \
-                           "end_weekday_index" : dlg.ui.endWeekdayComboBox.currentIndex(), \
-                           "time" : dlg.ui.timeEdit.time(), \
-                           "file_name" : dlg.ui.fileNameLineEdit.text() \
-                            }
+            if dlg.ui.singleFileRadioButton.isChecked():
+                add_new_record_single_file()
+            else:
+                add_new_record_music_folder()
 
-            self.model.add_new_record(new_record)
             self.refresh_grid()
 
         except Exception as e:
@@ -74,11 +96,9 @@ class SchoolBellController:
         for record in self.model.records:
             self.main_window.ui.scheduleTable.insertRow(row)
             self.main_window.ui.scheduleTable.setItem(row, 0, QTableWidgetItem(self.output_weekdays(record)))
-            self.main_window.ui.scheduleTable.setItem(row, 1, QTableWidgetItem(record["time"].toString()))
+            self.main_window.ui.scheduleTable.setItem(row, 1, QTableWidgetItem(record["start_time"].toString()))
             self.main_window.ui.scheduleTable.setItem(row, 2, QTableWidgetItem(record["description"]))
             row = row + 1
-
-        #self.main_window.ui.scheduleTable.repaint()
 
     def output_weekdays(self, record):
         return getWeekdayNameByIndex(record["start_weekday_index"]) + ' - ' + \
