@@ -12,14 +12,22 @@ class PlaySoundsController:
         is_played = False
         for rec in self.model.records:
 
+            print('imhere1')
+
             if self.already_played_recently(rec):
                 continue
+
+            print('imhere2')
 
             if not self.check_weekday_matches(rec):
                 continue
 
+            print('imhere3')
+
             if not self.time_has_come(rec):
                 continue
+
+            print('imhere4')
 
             self.play_the_sound(rec)
             is_played = True
@@ -32,9 +40,12 @@ class PlaySoundsController:
             and weekday <= rec['end_weekday_index'] )
 
     def time_has_come(self, rec):
-        time_from_rec = rec['time'].toPyTime()
+        time_from_rec = rec['start_time'].toPyTime()
+        #print(time_from_rec)
         current_time = datetime.datetime.now().time()
+        #print(current_time)
         diff_time = self.get_time_difference_in_seconds_time1_minus_time2(current_time, time_from_rec)
+        #print(diff_time)
         if diff_time >= 0 and diff_time <= 5:
             return True
         else:
@@ -52,7 +63,7 @@ class PlaySoundsController:
     def compare_records(self, rec1, rec2):
         return ( rec1['start_weekday_index'] == rec2['start_weekday_index'] \
                     and rec1['end_weekday_index'] == rec2['end_weekday_index'] \
-                    and rec1['time'] == rec2['time'] )
+                    and rec1['start_time'] == rec2['start_time'] )
 
     def how_many_minutes_ago_played(self, already_played_record):
         time_diff = datetime.datetime.now() - already_played_record['played_date_time']
@@ -63,7 +74,7 @@ class PlaySoundsController:
         self.play_sound_file_by_path(rec['file_name'])
         new_already_played_rec = {'start_weekday_index': rec['start_weekday_index'], \
                                   'end_weekday_index': rec['end_weekday_index'], \
-                                  'time': rec['time'], \
+                                  'start_time': rec['start_time'], \
                                   'played_date_time': datetime.datetime.now()}
 
         self.already_played_records.append(new_already_played_rec)
@@ -82,9 +93,6 @@ class PlaySoundsController:
 
     def test_play_music(self):
         files = []
-        #files.append(r'E:\asana\myprogs\python\desktop\SchoolBell\sounds\bell1.mp3')
-        #files.append(r'E:\asana\myprogs\python\desktop\SchoolBell\sounds\bell2.mp3')
-        #files.append(r'E:\asana\myprogs\python\desktop\SchoolBell\sounds\bell3.mp3')
         files.append(r'D:\_toarchive\tmp\school-bell\sound_files_for_test\Recording1.mp3')
         files.append(r'D:\_toarchive\tmp\school-bell\sound_files_for_test\Recording2.mp3')
         files.append(r'D:\_toarchive\tmp\school-bell\sound_files_for_test\Recording3.mp3')

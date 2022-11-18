@@ -7,7 +7,7 @@ from datetime import datetime as datetime_attr
 
 from play_sounds.play_sounds_controller import PlaySoundsController
 from model import SchoolBellModel
-
+import test_model
 
 class TestPlaySoundsController:
 
@@ -28,7 +28,7 @@ class TestPlaySoundsController:
     def test_play_the_sound(self, mocker, empty_controller_with_empty_model):
         cut = empty_controller_with_empty_model
 
-        rec_to_play = dict(start_weekday_index=1, end_weekday_index=1, time=QTime(7, 20, 25), \
+        rec_to_play = dict(start_weekday_index=1, end_weekday_index=1, start_time=QTime(7, 20, 25), \
                            file_name='testfile.mp3')
         playsound_mock = mocker.patch('play_sounds.play_sounds_model.PlaySoundsModel.play_the_sound')
 
@@ -40,7 +40,7 @@ class TestPlaySoundsController:
     def assert_recs_have_equal_key(self, rec1, rec2):
         assert rec1['start_weekday_index'] == rec2['start_weekday_index']
         assert rec1['end_weekday_index'] == rec2['end_weekday_index']
-        assert rec1['time'] == rec2['time']
+        assert rec1['start_time'] == rec2['start_time']
 
 CORRECT_TIME_HOUR = 23
 CORRECT_TIME_MINUTE = 55
@@ -55,8 +55,9 @@ class TestPlaySoundsControllerMethodPlayIfTimeHasCome:
 
         model_record = \
             dict(start_weekday_index=1, end_weekday_index=1, \
-                 time=QTime(parsed_rec_time['hour'], parsed_rec_time['minute'], parsed_rec_time['second']), \
+                 start_time=QTime(parsed_rec_time['hour'], parsed_rec_time['minute'], parsed_rec_time['second']), \
                  description='test record', file_name='test_sound.mp3')
+        test_model.add_missing_keys_to_record(model_record)
         model.add_new_record(model_record)
 
         play_sounds_controller = PlaySoundsController(model)
@@ -190,8 +191,8 @@ class TestPlaySoundsControllerMethodPlayIfTimeHasCome:
         time_split_at_hour_minute = parse_time(time_as_string)
         played_date_time = datetime_attr.strptime(played_date_time_as_string, '%d.%m.%Y %H:%M:%S')
         return dict(start_weekday_index=weekday, end_weekday_index=weekday, \
-                    time=QTime(time_split_at_hour_minute['hour'], time_split_at_hour_minute['minute'],\
-                               time_split_at_hour_minute['second']), \
+                    start_time=QTime(time_split_at_hour_minute['hour'], time_split_at_hour_minute['minute'],\
+                                     time_split_at_hour_minute['second']), \
                     played_date_time=played_date_time)
 
 def parse_time(time_as_string):
