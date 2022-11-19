@@ -4,11 +4,14 @@ from PyQt6.QtCore import QTime
 from model import SchoolBellModel
 from constants import REC_TYPE_SINGLE_FILE, REC_TYPE_MUSIC_FOLDER
 
-class TestModel:
-
+class TestModelParent:
     @pytest.fixture
     def empty_model(self):
         return SchoolBellModel()
+
+
+
+class TestModelSingleFile(TestModelParent):
 
     @pytest.fixture
     def model_with_one_record(self):
@@ -24,7 +27,7 @@ class TestModel:
         model = empty_model
         new_record = \
             dict(start_weekday_index=1, end_weekday_index=1, start_time=QTime(20, 2, 25), \
-                 description='test description', file_name='test_sound.mp3')
+                 rec_type=REC_TYPE_SINGLE_FILE, description='test description', file_name='test_sound.mp3')
         add_missing_keys_to_record(new_record)
         model.add_new_record(new_record)
 
@@ -33,7 +36,8 @@ class TestModel:
     def test_add_new_record_and_existed_records_before_with_other_key(self, model_with_one_record):
         new_record_with_other_key = \
             dict(start_weekday_index=2, end_weekday_index=2, start_time=QTime(18, 2, 25), \
-                 description='test description', file_name='test_sound.mp3')
+                 rec_type=REC_TYPE_SINGLE_FILE,description='test description',\
+                 file_name='test_sound.mp3')
 
         add_missing_keys_to_record(new_record_with_other_key)
 
@@ -65,6 +69,28 @@ class TestModel:
         assert rec1['start_time'] == rec2['start_time']
         assert rec1['description'] == rec2['description']
         assert rec1['file_name'] == rec2['file_name']
+
+class TestModelMusicFolder(TestModelParent):
+
+    def test_add_new_record_and_was_no_records_before(self, empty_model):
+        model = empty_model
+        new_record = \
+            dict(start_weekday_index=1, end_weekday_index=1, start_time=QTime(20, 2, 25), \
+                 end_time=QTime(20, 3, 25), rec_type=REC_TYPE_MUSIC_FOLDER,\
+                 description='test description', folder_name='C:\music')
+        add_missing_keys_to_record(new_record)
+        model.add_new_record(new_record)
+
+        self.assert_records_equal(model.records[0], new_record)
+
+    def assert_records_equal(self,rec1,rec2):
+        assert rec1['start_weekday_index'] == rec2['start_weekday_index']
+        assert rec1['end_weekday_index'] == rec2['end_weekday_index']
+        assert rec1['start_time'] == rec2['start_time']
+        assert rec1['end_time'] == rec2['end_time']
+        assert rec1['rec_type'] == rec2['rec_type']
+        assert rec1['description'] == rec2['description']
+        assert rec1['folder_name'] == rec2['folder_name']
 
 def add_missing_keys_to_record(rec):
 

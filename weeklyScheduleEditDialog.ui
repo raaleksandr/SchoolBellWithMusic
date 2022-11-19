@@ -337,7 +337,7 @@
         <string>End time</string>
        </property>
       </widget>
-      <widget class="QTimeEdit" name="timeEdit_2">
+      <widget class="QTimeEdit" name="endTimeEdit">
        <property name="geometry">
         <rect>
          <x>300</x>

@@ -31,5 +31,5 @@ class PlaySoundsModel:
             self.pygame.mixer.music.stop()
             wait_music_finished()
 
-
-
+    def is_something_playing(self):
+        return self.pygame.mixer.music.get_busy()
