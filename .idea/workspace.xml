@@ -4,19 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="New fields for music playback added to model">
-      <change afterPath="$PROJECT_DIR$/play_sounds/play_sounds_folder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/play_sounds/test_play_sounds_folder.py" afterDir="false" />
+    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Wrote logic and tests for folder music playback need to test manually with UI">
+      <change afterPath="$PROJECT_DIR$/weekly_schedule_dialog/weekly_schedule_edit_controller.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/weekly_schedule_dialog/weekly_schedule_edit_dialog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainwindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/mainwindow.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_folder.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_folder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_thread.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_thread.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play_sounds/test_play_sounds_folder.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/test_play_sounds_folder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weeklyScheduleEditDialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/weeklyScheduleEditDialog.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weeklyScheduleEditDialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/weekly_schedule_dialog/weeklyScheduleEditDialog.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weekly_schedule_edit.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,16 +44,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/asana/myprogs/python/desktop/SchoolBell&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "E:/asana/myprogs/python/desktop/SchoolBell/weekly_schedule_dialog",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\asana\myprogs\python\desktop\SchoolBell\weekly_schedule_dialog" />
       <recent name="E:\asana\myprogs\python\desktop\SchoolBell\play_sounds" />
     </key>
   </component>
@@ -77,55 +80,55 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_play_sounds_controller.TestPlaySoundsControllerPlayMusicFolder.test_play_second_file_when_first_finished" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_model.TestModelMusicFolder.test_error_when_folder_does_not_contain_sound_files" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SchoolBell" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play_sounds" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_play_sounds_controller.TestPlaySoundsControllerPlayMusicFolder.test_play_second_file_when_first_finished&quot;" />
+      <option name="_new_target" value="&quot;test_model.TestModelMusicFolder.test_error_when_folder_does_not_contain_sound_files&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_play_sounds_folder.TestPlaySoundsFolder" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_model.TestModelMusicFolder.test_error_when_folder_is_not_filled" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SchoolBell" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play_sounds" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_play_sounds_folder.TestPlaySoundsFolder&quot;" />
+      <option name="_new_target" value="&quot;test_model.TestModelMusicFolder.test_error_when_folder_is_not_filled&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_different_folder" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_model.TestModelSingleFile.test_add_new_record_and_existed_records_before_with_other_key" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SchoolBell" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play_sounds" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_different_folder&quot;" />
+      <option name="_new_target" value="&quot;test_model.TestModelSingleFile.test_add_new_record_and_existed_records_before_with_other_key&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_first_time" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_play_sounds_controller.TestPlaySoundsControllerPlayMusicFolder" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SchoolBell" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -137,11 +140,11 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_first_time&quot;" />
+      <option name="_new_target" value="&quot;test_play_sounds_controller.TestPlaySoundsControllerPlayMusicFolder&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_start_from_beginning" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_play_sounds_controller.TestPlaySoundsControllerPlaySingleFile" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SchoolBell" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -153,7 +156,7 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_start_from_beginning&quot;" />
+      <option name="_new_target" value="&quot;test_play_sounds_controller.TestPlaySoundsControllerPlaySingleFile&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -176,19 +179,19 @@
     <list>
       <item itemvalue="Python.SchoolBellWithMusic" />
       <item itemvalue="Python tests.pytest in SchoolBell" />
-      <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerPlayMusicFolder.test_play_second_file_when_first_finished" />
-      <item itemvalue="Python tests.pytest for test_play_sounds_folder.TestPlaySoundsFolder" />
-      <item itemvalue="Python tests.pytest for test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_different_folder" />
-      <item itemvalue="Python tests.pytest for test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_first_time" />
-      <item itemvalue="Python tests.pytest for test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_start_from_beginning" />
+      <item itemvalue="Python tests.pytest for test_model.TestModelMusicFolder.test_error_when_folder_does_not_contain_sound_files" />
+      <item itemvalue="Python tests.pytest for test_model.TestModelMusicFolder.test_error_when_folder_is_not_filled" />
+      <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_add_new_record_and_existed_records_before_with_other_key" />
+      <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerPlayMusicFolder" />
+      <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerPlaySingleFile" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerPlayMusicFolder.test_play_second_file_when_first_finished" />
-        <item itemvalue="Python tests.pytest for test_play_sounds_folder.TestPlaySoundsFolder" />
-        <item itemvalue="Python tests.pytest for test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_different_folder" />
-        <item itemvalue="Python tests.pytest for test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_start_from_beginning" />
-        <item itemvalue="Python tests.pytest for test_play_sounds_folder.TestPlaySoundsFolder.test_get_next_file_first_time" />
+        <item itemvalue="Python tests.pytest for test_model.TestModelMusicFolder.test_error_when_folder_does_not_contain_sound_files" />
+        <item itemvalue="Python tests.pytest for test_model.TestModelMusicFolder.test_error_when_folder_is_not_filled" />
+        <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerPlayMusicFolder" />
+        <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerPlaySingleFile" />
+        <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_add_new_record_and_existed_records_before_with_other_key" />
       </list>
     </recent_temporary>
   </component>
@@ -285,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668808743232</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Wrote logic and tests for folder music playback need to test manually with UI">
+      <created>1668886377100</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1668886377100</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -310,6 +320,7 @@
     <MESSAGE value="Finished tests and explored how to play sound files in queue" />
     <MESSAGE value="New fields for music playback added to &quot;add schedule&quot; dialog box" />
     <MESSAGE value="New fields for music playback added to model" />
-    <option name="LAST_COMMIT_MESSAGE" value="New fields for music playback added to model" />
+    <MESSAGE value="Wrote logic and tests for folder music playback need to test manually with UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wrote logic and tests for folder music playback need to test manually with UI" />
   </component>
 </project>

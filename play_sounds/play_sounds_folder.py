@@ -10,16 +10,33 @@ class PlaySoundsFolderPlayer:
 
     def get_sound_files_in_folder(self, folder_name):
 
+        def get_extension(filename):
+            return splitext(filename)[-1]
+
+        def remove_point_from_extension(file_extension):
+            if not file_extension:
+                return ''
+
+            if file_extension[0] == '.':
+                return file_extension[1:]
+            else:
+                return file_extension
+
         sound_files = []
-        for file in listdir(folder_name):
-            filename = join(folder_name, file)
+        try:
+            for file in listdir(folder_name):
+                filename = join(folder_name, file)
 
-            if not isfile(filename):
-                continue
+                if not isfile(filename):
+                    continue
 
-            file_extension = splitext(filename)[-1].upper()
-            if file_extension in SOUND_EXTENSIONS:
-                sound_files.append(filename)
+                file_extension = get_extension(filename)
+                file_extension = remove_point_from_extension(file_extension)
+                file_extension = file_extension.upper()
+                if file_extension in SOUND_EXTENSIONS:
+                    sound_files.append(filename)
+        except:
+            sound_files = []
 
         return sound_files
 
@@ -35,12 +52,14 @@ class PlaySoundsFolderPlayer:
 
                 if found_position:
                     result_file = sound_file
+                    break
 
                 if sound_file == stored_position['previous_file_name']:
                     found_position = True
 
         if not result_file:
-             result_file = sound_files[0]
+            if sound_files:
+                result_file = sound_files[0]
 
         if result_file:
             if stored_position:
@@ -57,3 +76,10 @@ class PlaySoundsFolderPlayer:
                 return stored_position
 
         return None
+
+    def folder_has_sound_files(self, folder_name):
+        sound_files_in_folder = self.get_sound_files_in_folder(folder_name)
+        if sound_files_in_folder:
+            return True
+        else:
+            return False

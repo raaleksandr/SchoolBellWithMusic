@@ -33,6 +33,14 @@ class TestPlaySoundsFolder:
         result = cut.get_next_file_in_folder('folder1')
         assert result == 'file_test1.mp3'
 
+    @pytest.mark.parametrize('files_list', [['file_test1.mp3', 'file_test2.mp3', 'file_test3.mp3']])
+    def test_get_next_file_second_time_when_there_are_3_files(self, any_folder_contains_those_files):
+        cut = PlaySoundsFolderPlayer()
+
+        cut.get_next_file_in_folder('folder1')
+        result = cut.get_next_file_in_folder('folder1')
+        assert result == 'file_test2.mp3'
+
     @pytest.mark.parametrize('files_list', [['file_test1.mp3', 'file_test2.mp3']])
     def test_get_next_file_different_folder(self, any_folder_contains_those_files):
         cut = PlaySoundsFolderPlayer()
@@ -40,3 +48,11 @@ class TestPlaySoundsFolder:
         cut.get_next_file_in_folder('folder1')
         result = cut.get_next_file_in_folder('folder2')
         assert result == 'file_test1.mp3'
+
+    @pytest.mark.parametrize('files_list', [[]])
+    def test_case_when_folder_is_empty(self, any_folder_contains_those_files):
+        cut = PlaySoundsFolderPlayer()
+
+        cut.get_next_file_in_folder('folder1')
+        result = cut.get_next_file_in_folder('folder2')
+        assert result == ''

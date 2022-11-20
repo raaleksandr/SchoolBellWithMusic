@@ -33,3 +33,7 @@ class PlaySoundsModel:
 
     def is_something_playing(self):
         return self.pygame.mixer.music.get_busy()
+
+    def stop_all_sounds(self):
+        if self.is_something_playing():
+            self.pygame.mixer.music.stop()

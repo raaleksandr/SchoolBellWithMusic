@@ -5,19 +5,29 @@ from play_sounds.play_sounds_folder import PlaySoundsFolderPlayer
 from constants import REC_TYPE_SINGLE_FILE, REC_TYPE_MUSIC_FOLDER
 
 class PlaySoundsController:
-    def __init__(self, model):
-        self.model = model
+    def __init__(self, controller):
+        self.controller = controller
+        self.model = self.controller.model
         self.playback_history = []
         self.play_sounds_model = PlaySoundsModel()
         self.folder_play = PlaySoundsFolderPlayer()
 
     def perform_play_sounds_actions(self):
+        something_started_to_play = False
         for rec in self.model.records:
 
             if not self.rec_must_play(rec):
                 continue
 
-            self.play_the_sound(rec)
+            try:
+                self.play_the_sound(rec)
+                something_started_to_play = True
+            except Exception as e:
+                self.controller.handle_error(e)
+
+        if not something_started_to_play:
+            if self.some_music_from_folder_still_plays_but_should_not():
+                self.stop_all_sounds()
 
     def rec_must_play(self, rec):
 
@@ -86,7 +96,11 @@ class PlaySoundsController:
         if rec['rec_type'] == REC_TYPE_SINGLE_FILE:
             filename = rec['file_name']
         else:
-            filename = self.folder_play.get_next_file_in_folder(rec['folder_name'])
+            folder_name = rec['folder_name']
+            filename = self.folder_play.get_next_file_in_folder(folder_name)
+
+            if not filename:
+                raise Exception('Folder ' + folder_name + ' contains no sound files')
 
         if filename:
             self.play_sound_file_by_path(filename)
@@ -98,7 +112,7 @@ class PlaySoundsController:
                                end_weekday_index=rec['end_weekday_index'],\
                                start_time=rec['start_time'],\
                                played_date_time=datetime.datetime.now(),\
-                               sheduled_rec=rec.copy())
+                               scheduled_rec=rec.copy())
 
         self.playback_history.append(new_history_rec)
 
@@ -117,9 +131,40 @@ class PlaySoundsController:
     def is_something_playing(self):
         return self.play_sounds_model.is_something_playing()
 
-    def what_now_plays(self):
-        if not self.is_something_playing():
-            return ''
+    def any_music_folder_must_play_now(self):
+        for rec in self.model.records:
+            if rec['rec_type'] != REC_TYPE_MUSIC_FOLDER:
+                continue
+
+            if self.time_in_range_of_rec(rec):
+                return True
+
+        return False
+
+    def stop_all_sounds(self):
+        self.play_sounds_model.stop_all_sounds()
+
+    def get_last_history_record_that_was_played(self):
+        if self.playback_history:
+            return self.playback_history[-1]['scheduled_rec']
+        else:
+            return None
+
+    def last_that_played_was_music_folder(self):
+        last_history_record = self.get_last_history_record_that_was_played()
+        if not last_history_record:
+            return False
+
+        return ( last_history_record['rec_type'] == REC_TYPE_MUSIC_FOLDER )
+
+    def some_music_from_folder_still_plays_but_should_not(self):
+        if ( not self.any_music_folder_must_play_now() ) \
+            and self.is_something_playing() \
+            and self.last_that_played_was_music_folder():
+
+            return True
+        else:
+            return False
 
     def test_play_music(self):
         files = []
