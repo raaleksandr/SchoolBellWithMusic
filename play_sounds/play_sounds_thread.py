@@ -2,5 +2,5 @@ import time
 
 def main_sounds_thread(controller):
     while True:
-        controller.play_sounds_if_time_has_come()
+        controller.perform_play_sounds_actions()
         time.sleep(1)
