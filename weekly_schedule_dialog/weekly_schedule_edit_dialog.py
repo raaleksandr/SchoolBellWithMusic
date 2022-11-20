@@ -20,10 +20,6 @@ class WeeklyScheduleEditDialog(QDialog):
         self.ui.chooseFolderPushButton.clicked.connect(self.chooseFolderPushButtonClicked)
 
     def init_sizes(self):
-        geometry = self.ui.singleFileWidget.geometry()
-        top_of_properties_widget = geometry.top()
-        left_of_properties_widget = geometry.left()
-
         self.set_widget_top_and_preserve_height(self.ui.musicFolderWidget, \
                                                 self.ui.singleFileWidget.geometry().top())
 
@@ -39,7 +35,6 @@ class WeeklyScheduleEditDialog(QDialog):
         geometry.setTop(top)
         geometry.setHeight(saved_height)
         widget.setGeometry(geometry)
-        #widget.repaint()
 
     def refresh_widgets_visibility(self):
         self.ui.musicFolderWidget.setVisible(False)

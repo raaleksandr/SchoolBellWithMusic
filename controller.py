@@ -1,5 +1,6 @@
 from PyQt6.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 import PyQt6.QtCore as QtCore
+from PyQt6.QtCore import QTime
 import sys
 import traceback
 import threading
@@ -16,6 +17,13 @@ class SchoolBellController:
     def __init__(self):
         try:
             self.model = SchoolBellModel()
+
+            # test TODO DEL
+            rec = dict(start_weekday_index=1,end_weekday_index=1,start_time=QTime(10,0,0),active=True,rec_type=REC_TYPE_SINGLE_FILE,description='test1',file_name='file1')
+            self.model.records.append(rec)
+            rec = dict(start_weekday_index=1, end_weekday_index=1, start_time=QTime(11, 0, 0),active=True,rec_type=REC_TYPE_SINGLE_FILE,description='test2',file_name='file2')
+            self.model.records.append(rec)
+
             self.play_sounds_controller = PlaySoundsController(self)
             self.weekly_schedule_edit_controller = WeeklyScheduleEditController(self)
         except Exception as e:
@@ -41,49 +49,15 @@ class SchoolBellController:
             print(e)
 
     def handle_new_record_button(self):
-
         if self.weekly_schedule_edit_controller.handle_add_new_record():
             self.refresh_grid()
-        #def add_new_record_single_file():
-        #    new_record = { 'description' : dlg.ui.descriptionLineEdit.text(), \
-        #                   'start_weekday_index' : dlg.ui.startWeekdayComboBox.currentIndex(), \
-        #                   'end_weekday_index' : dlg.ui.endWeekdayComboBox.currentIndex(), \
-        #                   'start_time' : dlg.ui.timeEdit.time(), \
-        #                   'end_time' : None, \
-        #                   'rec_type' : REC_TYPE_SINGLE_FILE, \
-        #                   'file_name' : dlg.ui.fileNameLineEdit.text() \
-        #                  }
 
-        #    self.model.add_new_record(new_record)
-
-        #def add_new_record_music_folder():
-        #    new_record = { 'description' : dlg.ui.descriptionLineEdit.text(), \
-        #                   'start_weekday_index' : dlg.ui.startWeekdayComboBox.currentIndex(), \
-        #                   'end_weekday_index' : dlg.ui.endWeekdayComboBox.currentIndex(), \
-        #                   'start_time' : dlg.ui.startTimeEdit.time(),
-        #                   'end_time' : dlg.ui.endTimeEdit.time(),
-        #                   'rec_type' : REC_TYPE_MUSIC_FOLDER,
-        #                   'folder_name' : dlg.ui.folderNameLineEdit.text() \
-        #                  }
-
-        #    self.model.add_new_record(new_record)
-
-        #try:
-        #    dlg = WeeklyScheduleEditDialog(self)
-        #    button = dlg.exec()
-
-        #    if not self.isOkKeyPressedInDialog(button):
-        #        return
-
-        #    if dlg.ui.singleFileRadioButton.isChecked():
-        #        add_new_record_single_file()
-        #    else:
-        #        add_new_record_music_folder()
-
-        #    self.refresh_grid()
-
-        #except Exception as e:
-        #    self.handle_error(e)
+    def handle_edit_record_button(self):
+        indexes = self.main_window.ui.scheduleTable.selectionModel().selectedRows()
+        for index in indexes:
+            print(index.row())
+            print(index.data())
+            print(index.internalId())
 
     def refresh_grid(self):
 
