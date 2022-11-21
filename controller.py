@@ -4,10 +4,11 @@ from PyQt6.QtCore import QTime
 import sys
 import traceback
 import threading
+import datetime
 
 from mainwindow import MainWindow
 from model import SchoolBellModel
-from utils import getWeekdayNameByIndex
+from utils import getWeekdayNameByIndex, getWeekdayIndexByName
 from play_sounds.play_sounds_controller import PlaySoundsController
 from play_sounds.play_sounds_thread import main_sounds_thread
 from constants import REC_TYPE_SINGLE_FILE, REC_TYPE_MUSIC_FOLDER
@@ -53,11 +54,56 @@ class SchoolBellController:
             self.refresh_grid()
 
     def handle_edit_record_button(self):
+        print(self.get_selected_record())
+        return
         indexes = self.main_window.ui.scheduleTable.selectionModel().selectedRows()
         for index in indexes:
+            print(index)
             print(index.row())
             print(index.data())
-            print(index.internalId())
+            #print(index.internalId())
+            model = index.model()
+            index_of_column = model.index(index.row(), 2, QtCore.QModelIndex())
+            text = model.data(index_of_column, QtCore.Qt.ItemDataRole.DisplayRole)
+            print(text)
+            print(model.itemData(index))
+            #print(model.data(index))
+
+    def get_selected_record(self):
+
+        def get_text_of_column(column_number):
+            index_of_column = model.index(selected_index.row(), column_number, QtCore.QModelIndex())
+            text_of_column = model.data(index_of_column, QtCore.Qt.ItemDataRole.DisplayRole)
+            return text_of_column
+
+        def decode_start_end_week(text_of_week_column):
+            splitted = text_of_week_column.split('-')
+            start_weekday_index = getWeekdayIndexByName(splitted[0].strip())
+            end_weekday_index = getWeekdayIndexByName(splitted[1].strip())
+            return start_weekday_index,end_weekday_index
+
+        def decode_start_time(text_of_date_column):
+            start_time_as_string = text_of_date_column.split(' ')[0]
+            start_time = datetime.datetime.strptime(start_time_as_string, '%H:%M:%S').time()
+            return start_time
+
+        selected_indexes = self.main_window.ui.scheduleTable.selectionModel().selectedRows()
+        if not selected_indexes:
+            return
+
+        selected_index = selected_indexes[0]
+        model = selected_index.model()
+        text_of_week_column = get_text_of_column(1)
+        text_of_dates_column = get_text_of_column(2)
+
+        start_weekday_index, end_weekday_index = decode_start_end_week(text_of_week_column)
+        start_time = decode_start_time(text_of_dates_column)
+
+        record_data = dict(start_weekday_index=start_weekday_index,end_weekday_index=end_weekday_index,\
+                           start_time=start_time)
+
+        return self.model.find_record(record_data)
+
 
     def refresh_grid(self):
 
