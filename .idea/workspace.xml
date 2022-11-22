@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Found a way to get record_data by selected grid element (not elegant)">
+    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Program now can add, edit and delete records and also save them before runs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainwindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainwindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/mainwindow.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weekly_schedule_dialog/weekly_schedule_edit_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/weekly_schedule_dialog/weekly_schedule_edit_controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/weekly_schedule_dialog/weekly_schedule_edit_dialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/weekly_schedule_dialog/weekly_schedule_edit_dialog.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -139,19 +137,19 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="pytest for test_model.TestModelSingleFile.test_update_record_key_changes" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest for test_play_sounds_controller.TestPlaySoundsControllerPlaySingleFile.test_not_ring_because_record_not_active" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="SchoolBell" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/play_sounds" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_model.TestModelSingleFile.test_update_record_key_changes&quot;" />
+      <option name="_new_target" value="&quot;test_play_sounds_controller.TestPlaySoundsControllerPlaySingleFile.test_not_ring_because_record_not_active&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -174,19 +172,19 @@
     <list>
       <item itemvalue="Python.SchoolBellWithMusic" />
       <item itemvalue="Python tests.pytest in SchoolBell" />
+      <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerPlaySingleFile.test_not_ring_because_record_not_active" />
       <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_add_new_record_and_was_no_records_before" />
       <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_delete_record" />
       <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_error_when_update_and_new_key_exists" />
-      <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_update_record_key_changes" />
       <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_add_new_record_and_existed_records_before_with_other_key" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for test_play_sounds_controller.TestPlaySoundsControllerPlaySingleFile.test_not_ring_because_record_not_active" />
         <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_add_new_record_and_existed_records_before_with_other_key" />
         <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_add_new_record_and_was_no_records_before" />
         <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_delete_record" />
         <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_error_when_update_and_new_key_exists" />
-        <item itemvalue="Python tests.pytest for test_model.TestModelSingleFile.test_update_record_key_changes" />
       </list>
     </recent_temporary>
   </component>
@@ -311,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668989310512</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Program now can add, edit and delete records and also save them before runs">
+      <created>1669075729612</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1669075729612</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -340,6 +345,7 @@
     <MESSAGE value="Data checks are implemented, dialog refactored in separate folder" />
     <MESSAGE value="Started to create 'Edit' function but not finished" />
     <MESSAGE value="Found a way to get record_data by selected grid element (not elegant)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Found a way to get record_data by selected grid element (not elegant)" />
+    <MESSAGE value="Program now can add, edit and delete records and also save them before runs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Program now can add, edit and delete records and also save them before runs" />
   </component>
 </project>

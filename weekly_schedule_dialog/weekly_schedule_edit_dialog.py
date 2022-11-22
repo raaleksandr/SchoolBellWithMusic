@@ -10,8 +10,12 @@ class WeeklyScheduleEditDialog(QDialog):
         self.ui = loadUi('weekly_schedule_dialog\\weeklyScheduleEditDialog.ui', self)
 
         self.init_events()
+
+    def exec(self):
         self.refresh_widgets_visibility()
         self.init_sizes()
+
+        return super().exec()
 
     def init_events(self):
         self.ui.chooseFilePushButton.clicked.connect(self.chooseFilePushButtonClicked)
@@ -36,7 +40,12 @@ class WeeklyScheduleEditDialog(QDialog):
         widget.setGeometry(geometry)
 
     def refresh_widgets_visibility(self):
-        self.ui.musicFolderWidget.setVisible(False)
+        if self.ui.singleFileRadioButton.isChecked():
+            self.ui.musicFolderWidget.setVisible(False)
+            self.ui.singleFileWidget.setVisible(True)
+        else:
+            self.ui.musicFolderWidget.setVisible(True)
+            self.ui.singleFileWidget.setVisible(False)
 
     def chooseFilePushButtonClicked(self):
         try:

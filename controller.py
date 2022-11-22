@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
+from PyQt6.QtWidgets import QApplication, QMessageBox, QTableWidgetItem, QCheckBox
 import PyQt6.QtCore as QtCore
 
 import sys
@@ -20,6 +20,7 @@ class SchoolBellController:
             self.model = SchoolBellModel(constants.FILE_NAME_TO_SAVE_RECORDS)
             self.play_sounds_controller = PlaySoundsController(self)
             self.weekly_schedule_edit_controller = WeeklyScheduleEditController(self)
+            self.grid_is_refreshing = False
         except Exception as e:
             self.handle_error(e)
 
@@ -67,8 +68,50 @@ class SchoolBellController:
 
     def get_selected_record(self):
 
+        selected_indexes = self.main_window.ui.scheduleTable.selectionModel().selectedRows()
+        if not selected_indexes:
+           return
+
+        selected_index = selected_indexes[0]
+        return self.get_record_by_table_widget_index(selected_index)
+
+        #def get_text_of_column(column_number):
+        #    index_of_column = model.index(selected_index.row(), column_number, QtCore.QModelIndex())
+        #    text_of_column = model.data(index_of_column, QtCore.Qt.ItemDataRole.DisplayRole)
+        #    return text_of_column
+
+        #def decode_start_end_week(text_of_week_column):
+        #    splitted = text_of_week_column.split('-')
+        #    start_weekday_index = getWeekdayIndexByName(splitted[0].strip())
+        #    end_weekday_index = getWeekdayIndexByName(splitted[1].strip())
+        #    return start_weekday_index,end_weekday_index
+
+        #def decode_start_time(text_of_date_column):
+        #    start_time_as_string = text_of_date_column.split(' ')[0]
+        #    start_time = datetime.datetime.strptime(start_time_as_string, '%H:%M:%S').time()
+        #    return start_time
+
+        #selected_indexes = self.main_window.ui.scheduleTable.selectionModel().selectedRows()
+        #if not selected_indexes:
+        #    return
+
+        #selected_index = selected_indexes[0]
+        #model = selected_index.model()
+        #text_of_week_column = get_text_of_column(1)
+        #text_of_dates_column = get_text_of_column(2)
+
+        #start_weekday_index, end_weekday_index = decode_start_end_week(text_of_week_column)
+        #start_time = decode_start_time(text_of_dates_column)
+
+        #record_data = dict(start_weekday_index=start_weekday_index, end_weekday_index=end_weekday_index,
+        #                   start_time=start_time)
+
+        #return self.model.find_record(record_data)
+
+    def get_record_by_table_widget_index(self, index):
+
         def get_text_of_column(column_number):
-            index_of_column = model.index(selected_index.row(), column_number, QtCore.QModelIndex())
+            index_of_column = model.index(index.row(), column_number, QtCore.QModelIndex())
             text_of_column = model.data(index_of_column, QtCore.Qt.ItemDataRole.DisplayRole)
             return text_of_column
 
@@ -76,19 +119,14 @@ class SchoolBellController:
             splitted = text_of_week_column.split('-')
             start_weekday_index = getWeekdayIndexByName(splitted[0].strip())
             end_weekday_index = getWeekdayIndexByName(splitted[1].strip())
-            return start_weekday_index,end_weekday_index
+            return start_weekday_index, end_weekday_index
 
         def decode_start_time(text_of_date_column):
             start_time_as_string = text_of_date_column.split(' ')[0]
             start_time = datetime.datetime.strptime(start_time_as_string, '%H:%M:%S').time()
             return start_time
 
-        selected_indexes = self.main_window.ui.scheduleTable.selectionModel().selectedRows()
-        if not selected_indexes:
-            return
-
-        selected_index = selected_indexes[0]
-        model = selected_index.model()
+        model = index.model()
         text_of_week_column = get_text_of_column(1)
         text_of_dates_column = get_text_of_column(2)
 
@@ -106,6 +144,8 @@ class SchoolBellController:
 
     def refresh_grid(self):
 
+        self.grid_is_refreshing = True
+
         self.main_window.ui.scheduleTable.setRowCount(0)
 
         row = 0
@@ -115,6 +155,7 @@ class SchoolBellController:
             checkBox = QTableWidgetItem(record['active'])
             checkBox.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable |
                               QtCore.Qt.ItemFlag.ItemIsEnabled )
+
             if record['active']:
                 checkBox.setCheckState(QtCore.Qt.CheckState.Checked)
             else:
@@ -126,6 +167,29 @@ class SchoolBellController:
             self.main_window.ui.scheduleTable.setItem(row, 3, QTableWidgetItem(record["description"]))
             self.main_window.ui.scheduleTable.setItem(row, 4, QTableWidgetItem(self.output_file_folder(record)))
             row = row + 1
+
+        self.main_window.ui.scheduleTable.itemChanged.connect(self.check_box_in_grid_changed)
+
+        self.grid_is_refreshing = False
+
+    def check_box_in_grid_changed(self, item):
+
+        if self.grid_is_refreshing:
+            return
+
+        parentTableWidget = item.tableWidget()
+        index = parentTableWidget.indexFromItem(item)
+        record_data = self.get_record_by_table_widget_index(index)
+        record_data_old = record_data.copy()
+        record_data_new = record_data.copy()
+
+        if item.checkState() == QtCore.Qt.CheckState.Checked:
+            record_data_new['active'] = True
+        else:
+            record_data_new['active'] = False
+
+        self.model.update_record(record_old=record_data_old, record_new=record_data_new)
+        self.save_changes_to_file()
 
     def save_changes_to_file(self):
         self.model.save_records_to_file()

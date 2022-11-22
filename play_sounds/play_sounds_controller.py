@@ -14,7 +14,7 @@ class PlaySoundsController:
 
     def perform_play_sounds_actions(self):
         something_started_to_play = False
-        for rec in self.model.records:
+        for rec in self.active_records():
 
             if not self.rec_must_play(rec):
                 continue
@@ -28,6 +28,15 @@ class PlaySoundsController:
         if not something_started_to_play:
             if self.some_music_from_folder_still_plays_but_should_not():
                 self.stop_all_sounds()
+
+    def active_records(self):
+        records_act = []
+        for rec in self.model.records:
+            if rec['active'] == True:
+                records_act.append(rec)
+
+        return records_act
+
 
     def rec_must_play(self, rec):
 
@@ -132,7 +141,7 @@ class PlaySoundsController:
         return self.play_sounds_model.is_something_playing()
 
     def any_music_folder_must_play_now(self):
-        for rec in self.model.records:
+        for rec in self.active_records():
             if rec['rec_type'] != REC_TYPE_MUSIC_FOLDER:
                 continue
 
@@ -159,8 +168,8 @@ class PlaySoundsController:
 
     def some_music_from_folder_still_plays_but_should_not(self):
         if ( not self.any_music_folder_must_play_now() ) \
-            and self.is_something_playing() \
-            and self.last_that_played_was_music_folder():
+             and self.is_something_playing() \
+             and self.last_that_played_was_music_folder():
 
             return True
         else:
