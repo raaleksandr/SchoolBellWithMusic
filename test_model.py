@@ -24,7 +24,7 @@ class TestModelSingleFile(TestModelParent):
         some_test_record = \
             dict(start_weekday_index=1, end_weekday_index=1, start_time=TIME_ALREADY_EXISTED, \
                  end_time=None, rec_type=REC_TYPE_SINGLE_FILE, \
-                 description='previous record', file_name='previous_sound.mp3')
+                 description='previous record', file_name='previous_sound.mp3', active=True)
         return some_test_record
 
     @pytest.fixture
@@ -43,7 +43,8 @@ class TestModelSingleFile(TestModelParent):
         model = empty_model
         new_record = \
             dict(start_weekday_index=1, end_weekday_index=1, start_time=ANY_OTHER_TIME, \
-                 rec_type=REC_TYPE_SINGLE_FILE, description='test description', file_name='test_sound.mp3')
+                 rec_type=REC_TYPE_SINGLE_FILE, description='test description', file_name='test_sound.mp3', \
+                 active=True)
         model.add_new_record(new_record)
 
         self.assert_records_equal(model.records[0], new_record)
@@ -51,8 +52,8 @@ class TestModelSingleFile(TestModelParent):
     def test_add_new_record_and_existed_records_before_with_other_key(self, model_with_one_record):
         new_record_with_other_key = \
             dict(start_weekday_index=2, end_weekday_index=2, start_time=ANY_OTHER_TIME, \
-                 rec_type=REC_TYPE_SINGLE_FILE,description='test description',\
-                 file_name='test_sound.mp3')
+                 rec_type=REC_TYPE_SINGLE_FILE, description='test description',\
+                 file_name='test_sound.mp3', active=True)
 
         model_with_one_record.add_new_record(new_record_with_other_key)
 
@@ -201,7 +202,7 @@ class TestModelMusicFolder(TestModelParent):
         some_test_record = \
             dict(start_weekday_index=1, end_weekday_index=1, start_time=ANY_OTHER_TIME, \
                  end_time=QTime(20, 3, 25), rec_type=REC_TYPE_MUSIC_FOLDER, \
-                 description='test description', folder_name='C:\music')
+                 description='test description', folder_name='C:\music', active=True)
 
         return some_test_record
 

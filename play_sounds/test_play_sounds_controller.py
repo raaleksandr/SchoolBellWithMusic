@@ -122,7 +122,8 @@ class TestPlaySoundsControllerPlaySingleFile(TestPlaySoundsControllerMethod_perf
         model_record = \
             dict(start_weekday_index=1, end_weekday_index=1, \
                  start_time=QTime(parsed_rec_time['hour'], parsed_rec_time['minute'], parsed_rec_time['second']), \
-                 rec_type=REC_TYPE_SINGLE_FILE, description='test record', file_name='test_sound.mp3')
+                 rec_type=REC_TYPE_SINGLE_FILE, description='test record', file_name='test_sound.mp3', \
+                 active=True)
 
         controller.model.add_new_record(model_record)
 
@@ -224,6 +225,18 @@ class TestPlaySoundsControllerPlaySingleFile(TestPlaySoundsControllerMethod_perf
 
         stopsound_mock.assert_not_called()
 
+    @pytest.mark.parametrize('scheduled_rec_time', ['23:55:00'])
+    @pytest.mark.parametrize('fake_system_date', [dict(date=DUMMY_DATE, time='23:55:00', weekday=1)])
+    def test_not_ring_because_record_not_active(self, mocker, controller_with_test_recs_in_model, \
+                                                patch_datetime_now_weekday):
+        cut = controller_with_test_recs_in_model
+        cut.model.records[0]['active'] = False
+
+        playsound_mock = mocker.patch('play_sounds.play_sounds_model.PlaySoundsModel.play_the_sound')
+
+        cut.perform_play_sounds_actions()
+
+        playsound_mock.assert_not_called()
 
 class TestPlaySoundsControllerPlayMusicFolder(TestPlaySoundsControllerMethod_perform_play_sounds_actions):
 
@@ -249,7 +262,8 @@ class TestPlaySoundsControllerPlayMusicFolder(TestPlaySoundsControllerMethod_per
             dict(start_weekday_index=scheduled_rec['weekday'], end_weekday_index=scheduled_rec['weekday'], \
                  start_time=QTime(parsed_rec_start['hour'], parsed_rec_start['minute'], parsed_rec_start['second']), \
                  end_time=QTime(parsed_rec_end['hour'], parsed_rec_end['minute'], parsed_rec_end['second']), \
-                 rec_type=REC_TYPE_MUSIC_FOLDER, description='test record', folder_name=scheduled_rec['folder'])
+                 rec_type=REC_TYPE_MUSIC_FOLDER, description='test record', folder_name=scheduled_rec['folder'], \
+                 active=True)
         model.add_new_record(model_record)
 
         play_sounds_controller = PlaySoundsController(controller)

@@ -19,7 +19,7 @@ class SchoolBellModel:
                           start_time=record_data['start_time'],
                           rec_type=record_data['rec_type'],
                           description=record_data['description'],
-                          active=True)
+                          active=record_data['active'])
 
         if record_data['rec_type'] == REC_TYPE_SINGLE_FILE:
             new_record['file_name'] = record_data['file_name']
