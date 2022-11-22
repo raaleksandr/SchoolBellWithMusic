@@ -7,7 +7,7 @@ from constants import REC_TYPE_SINGLE_FILE, REC_TYPE_MUSIC_FOLDER
 class TestModelParent:
     @pytest.fixture
     def empty_model(self):
-        return SchoolBellModel()
+        return SchoolBellModel('dummy')
 
 TIME_ALREADY_EXISTED = QTime(20, 2, 25)
 ANY_OTHER_TIME = QTime(18, 2, 25)
@@ -29,7 +29,7 @@ class TestModelSingleFile(TestModelParent):
 
     @pytest.fixture
     def model_with_one_record(self, construct_some_test_record, all_file_correctness_checks_are_true):
-        model = SchoolBellModel()
+        model = SchoolBellModel('dummy')
         previous_record = construct_some_test_record
         model.add_new_record(previous_record)
         return model
@@ -114,7 +114,68 @@ class TestModelSingleFile(TestModelParent):
         with pytest.raises(Exception):
             empty_model.add_new_record(some_record_with_data)
 
-    def assert_records_equal(self,rec1,rec2):
+    def test_update_record_key_not_changes(self, model_with_one_record, all_file_correctness_checks_are_true):
+
+        NEW_FILE_NAME = 'changed_file.mp3'
+
+        record_old = model_with_one_record.records[0]
+        record_new = record_old.copy()
+        record_new['file_name'] = NEW_FILE_NAME
+
+        model_with_one_record.update_record(record_new=record_new, record_old=record_old)
+
+        assert model_with_one_record.records[0]['file_name'] == NEW_FILE_NAME
+        assert len(model_with_one_record.records) == 1
+
+    def test_update_record_key_changes(self, model_with_one_record, all_file_correctness_checks_are_true):
+
+        NEW_FILE_NAME = 'changed_file.mp3'
+
+        record_old = model_with_one_record.records[0]
+        record_new = record_old.copy()
+        record_new['start_time'] = ANY_OTHER_TIME
+        record_new['file_name'] = NEW_FILE_NAME
+
+        model_with_one_record.update_record(record_new=record_new, record_old=record_old)
+
+        assert model_with_one_record.records[0]['start_time'] == ANY_OTHER_TIME
+        assert len(model_with_one_record.records) == 1
+
+    def test_error_when_update_and_new_key_exists(self, empty_model, construct_some_test_record, \
+                                                  all_file_correctness_checks_are_true):
+        ANY_TIME1 = TIME_ALREADY_EXISTED
+        ANY_TIME2 = ANY_OTHER_TIME
+
+        cut = empty_model
+        def add_2_any_records_to_model():
+            record1 = construct_some_test_record.copy()
+            record1['start_time'] = ANY_TIME1
+
+            record2 = construct_some_test_record.copy()
+            record2['start_time'] = ANY_TIME2
+
+            cut.records.append(record1)
+            cut.records.append(record2)
+
+        def try_to_change_start_time_in_one_rec_to_start_time_equal_to_second_rec():
+            record_old = cut.records[0].copy()
+            record_new = record_old.copy()
+            record_new['start_time'] = ANY_TIME2
+
+            cut.update_record(record_new=record_new, record_old=record_old)
+
+        add_2_any_records_to_model()
+
+        with pytest.raises(Exception):
+            try_to_change_start_time_in_one_rec_to_start_time_equal_to_second_rec()
+
+    def test_delete_record(self, model_with_one_record):
+        cut = model_with_one_record
+        record_to_delete = cut.records[0].copy()
+        cut.delete_record(record_to_delete)
+        assert len(cut.records) == 0
+
+    def assert_records_equal(self, rec1, rec2):
         assert rec1['start_weekday_index'] == rec2['start_weekday_index']
         assert rec1['end_weekday_index'] == rec2['end_weekday_index']
         assert rec1['start_time'] == rec2['start_time']

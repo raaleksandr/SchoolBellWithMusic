@@ -24,3 +24,11 @@ def isRunFromPyInstallerExeWithOneFileOption():
 
 def getWeekdayNameByIndex(weekdayIndex):
     return list(calendar.day_name)[weekdayIndex]
+
+def getWeekdayIndexByName(weekdayName):
+    weekday_names = list(calendar.day_name)
+    index = 0
+    for weekday_name in weekday_names:
+        if weekdayName.upper() == weekday_name.upper():
+            return index
+        index = index + 1

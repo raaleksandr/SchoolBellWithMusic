@@ -1,5 +1,4 @@
 from PyQt6.QtWidgets import QDialog, QFileDialog
-from PyQt6.QtCore import Qt
 
 from utils import loadUi
 
@@ -46,8 +45,6 @@ class WeeklyScheduleEditDialog(QDialog):
                 self.ui.fileNameLineEdit.setText(fname[0])
         except Exception as e:
             print(e)
-
-        #self.show_all_sizes()
 
     def playSoundPushButtonClicked(self):
 
