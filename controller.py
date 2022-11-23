@@ -13,6 +13,7 @@ from utils import getWeekdayNameByIndex, getWeekdayIndexByName
 from play_sounds.play_sounds_controller import PlaySoundsController
 from play_sounds.play_sounds_thread import main_sounds_thread
 from weekly_schedule_dialog.weekly_schedule_edit_controller import WeeklyScheduleEditController
+from about_dialog import AboutDialog
 
 class SchoolBellController:
     def __init__(self):
@@ -21,6 +22,7 @@ class SchoolBellController:
             self.play_sounds_controller = PlaySoundsController(self)
             self.weekly_schedule_edit_controller = WeeklyScheduleEditController(self)
             self.grid_is_refreshing = False
+
         except Exception as e:
             self.handle_error(e)
 
@@ -29,6 +31,7 @@ class SchoolBellController:
             self.app = QApplication(application_argv)
             self.main_window = MainWindow(self)
             self.main_window.show()
+            self.refresh_clock()
             self.model.load_records_from_file()
             self.refresh_grid()
             self.start_play_sounds_thread()
@@ -74,39 +77,6 @@ class SchoolBellController:
 
         selected_index = selected_indexes[0]
         return self.get_record_by_table_widget_index(selected_index)
-
-        #def get_text_of_column(column_number):
-        #    index_of_column = model.index(selected_index.row(), column_number, QtCore.QModelIndex())
-        #    text_of_column = model.data(index_of_column, QtCore.Qt.ItemDataRole.DisplayRole)
-        #    return text_of_column
-
-        #def decode_start_end_week(text_of_week_column):
-        #    splitted = text_of_week_column.split('-')
-        #    start_weekday_index = getWeekdayIndexByName(splitted[0].strip())
-        #    end_weekday_index = getWeekdayIndexByName(splitted[1].strip())
-        #    return start_weekday_index,end_weekday_index
-
-        #def decode_start_time(text_of_date_column):
-        #    start_time_as_string = text_of_date_column.split(' ')[0]
-        #    start_time = datetime.datetime.strptime(start_time_as_string, '%H:%M:%S').time()
-        #    return start_time
-
-        #selected_indexes = self.main_window.ui.scheduleTable.selectionModel().selectedRows()
-        #if not selected_indexes:
-        #    return
-
-        #selected_index = selected_indexes[0]
-        #model = selected_index.model()
-        #text_of_week_column = get_text_of_column(1)
-        #text_of_dates_column = get_text_of_column(2)
-
-        #start_weekday_index, end_weekday_index = decode_start_end_week(text_of_week_column)
-        #start_time = decode_start_time(text_of_dates_column)
-
-        #record_data = dict(start_weekday_index=start_weekday_index, end_weekday_index=end_weekday_index,
-        #                   start_time=start_time)
-
-        #return self.model.find_record(record_data)
 
     def get_record_by_table_widget_index(self, index):
 
@@ -219,6 +189,25 @@ class SchoolBellController:
         thread = threading.Timer(1, main_sounds_thread, [self])
         thread.setDaemon(True)
         thread.start()
+
+    def refresh_clock(self):
+        self.main_window.labelClock.setText(datetime.datetime.now().time().strftime('%H:%M:%S'))
+
+    def refresh_playback_status(self):
+        if self.play_sounds_controller.is_something_playing():
+            self.main_window.labelMessage.setText('Sound is playing')
+            #self.main_window.statusBar().setStyleSheet("QStatusBar{padding-left:8px;background:rgba(255,0,0,255);color:black;font-weight:bold;}")
+            #self.main_window.statusBar().setStyleSheet(
+        else:
+            self.main_window.labelMessage.setText('')
+            #self.main_window.statusBar().setStyleSheet(
+            #    "QStatusBar{padding-left:8px;background:rgba(255,0,0,255);color:black;font-weight:bold;}")
+            #self.main_window.statusBar().setStyleSheet("background-color:red")
+            #self.main_window.widget.setStyleSheet("background-color:red")
+
+    def handle_show_about_dialog(self):
+        aboutDialog = AboutDialog()
+        aboutDialog.exec()
 
     def test_play_music(self):
         self.model.load_records_from_file()

@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Program now can add, edit and delete records and also save them before runs">
+    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="'Active' checkboxes are now stored in file and are considered in schedule">
+      <change afterPath="$PROJECT_DIR$/about_dialog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/test_play_sounds_controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weekly_schedule_dialog/weekly_schedule_edit_dialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/weekly_schedule_dialog/weekly_schedule_edit_dialog.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainwindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainwindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/mainwindow.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_thread.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_thread.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -316,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669075729612</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="'Active' checkboxes are now stored in file and are considered in schedule">
+      <created>1669161109859</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1669161109859</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -346,6 +352,7 @@
     <MESSAGE value="Started to create 'Edit' function but not finished" />
     <MESSAGE value="Found a way to get record_data by selected grid element (not elegant)" />
     <MESSAGE value="Program now can add, edit and delete records and also save them before runs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Program now can add, edit and delete records and also save them before runs" />
+    <MESSAGE value="'Active' checkboxes are now stored in file and are considered in schedule" />
+    <option name="LAST_COMMIT_MESSAGE" value="'Active' checkboxes are now stored in file and are considered in schedule" />
   </component>
 </project>
