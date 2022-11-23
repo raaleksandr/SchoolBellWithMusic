@@ -1,4 +1,5 @@
-from PyQt6.QtWidgets import QMainWindow, QTableWidget
+from PyQt6.QtWidgets import QMainWindow, QTableWidget, QLabel
+from PyQt6.QtGui import QAction
 
 from utils import loadUi
 
@@ -14,6 +15,23 @@ class MainWindow(QMainWindow):
             self.ui.editPushButton.clicked.connect(self.editPushButtonClicked)
             self.ui.deletePushButton.clicked.connect(self.deletePushButtonClicked)
             self.ui.testPlayMusicFolderPushButton.clicked.connect(self.test_button)
+
+            self.labelClock = QLabel('', self)
+            self.ui.statusBar().addPermanentWidget(self.labelClock, 1)
+
+            self.labelMessage = QLabel('', self)
+            self.ui.statusBar().addPermanentWidget(self.labelMessage, 3)
+            #self.widget = QWidget(self)
+            #self.labelMessage = QLabel('', self.widget)
+            #self.ui.statusBar().addPermanentWidget(self.widget, 3)
+
+            menu_action = QAction('Option #1', self)
+            menu_action.setData('option1')
+            menu_action.triggered.connect(self.show_about_dialog)
+
+            #self.ui.actionAbout.addAction(menu_action)
+            self.ui.actionAbout.triggered.connect(self.show_about_dialog)
+
         except Exception as e:
             print(e)
 
@@ -39,3 +57,6 @@ class MainWindow(QMainWindow):
     def allowOnlySingleRowSelection(self):
         self.ui.scheduleTable.setSelectionMode(QTableWidget.SelectionMode.SingleSelection)
         self.ui.scheduleTable.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
+
+    def show_about_dialog(self):
+        self.controller.handle_show_about_dialog()

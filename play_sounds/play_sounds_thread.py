@@ -1,6 +1,13 @@
 import time
+import datetime
 
 def main_sounds_thread(controller):
+    second = -1
     while True:
-        controller.perform_play_sounds_actions()
-        time.sleep(1)
+        now_second = datetime.datetime.now().second
+        if now_second != second:
+            controller.perform_play_sounds_actions()
+            controller.refresh_clock()
+            controller.refresh_playback_status()
+
+        time.sleep(0.1)
