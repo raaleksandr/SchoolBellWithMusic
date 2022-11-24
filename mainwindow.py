@@ -14,8 +14,8 @@ class MainWindow(QMainWindow):
             self.ui.addPushButton.clicked.connect(self.addPushButtonClicked)
             self.ui.editPushButton.clicked.connect(self.editPushButtonClicked)
             self.ui.deletePushButton.clicked.connect(self.deletePushButtonClicked)
-            self.ui.testPlayMusicFolderPushButton.clicked.connect(self.test_button)
 
+            print('create label clock')
             self.labelClock = QLabel('', self)
             self.ui.statusBar().addPermanentWidget(self.labelClock, 1)
 
@@ -47,9 +47,6 @@ class MainWindow(QMainWindow):
 
     def deletePushButtonClicked(self, event):
         self.controller.handle_delete_record_button()
-
-    def test_button(self, event):
-        self.controller.test_play_music()
 
     def setGridSettings(self):
         self.makeGridReadOnly()

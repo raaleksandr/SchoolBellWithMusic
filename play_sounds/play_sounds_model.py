@@ -43,6 +43,7 @@ class PlaySoundsModel:
             self.pygame.mixer.music.stop()
 
     def uninitialize_before_close(self):
+        self.pygame.mixer.music.stop()
         self.pygame.mixer.quit()
+        self.pygame.quit()
         self.initialized = False
-        print('quit')
