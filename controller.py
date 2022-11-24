@@ -186,9 +186,12 @@ class SchoolBellController:
         self.play_sounds_controller.play_sound_file_by_path(file_name_with_full_path)
 
     def start_play_sounds_thread(self):
-        thread = threading.Timer(1, main_sounds_thread, [self])
-        thread.setDaemon(True)
-        thread.start()
+        self.thread = threading.Timer(1, main_sounds_thread, [self])
+        self.thread.setDaemon(True)
+        self.thread.start()
+
+    def stop_play_sounds_thread(self):
+        self.thread.cancel()
 
     def refresh_clock(self):
         self.main_window.labelClock.setText(datetime.datetime.now().time().strftime('%H:%M:%S'))
@@ -196,18 +199,16 @@ class SchoolBellController:
     def refresh_playback_status(self):
         if self.play_sounds_controller.is_something_playing():
             self.main_window.labelMessage.setText('Sound is playing')
-            #self.main_window.statusBar().setStyleSheet("QStatusBar{padding-left:8px;background:rgba(255,0,0,255);color:black;font-weight:bold;}")
-            #self.main_window.statusBar().setStyleSheet(
         else:
             self.main_window.labelMessage.setText('')
-            #self.main_window.statusBar().setStyleSheet(
-            #    "QStatusBar{padding-left:8px;background:rgba(255,0,0,255);color:black;font-weight:bold;}")
-            #self.main_window.statusBar().setStyleSheet("background-color:red")
-            #self.main_window.widget.setStyleSheet("background-color:red")
 
     def handle_show_about_dialog(self):
         aboutDialog = AboutDialog()
         aboutDialog.exec()
+
+    def uninitialize_before_close(self):
+        self.stop_play_sounds_thread()
+        self.play_sounds_controller.uninitialize_before_close()
 
     def test_play_music(self):
         self.model.load_records_from_file()

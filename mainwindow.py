@@ -35,6 +35,10 @@ class MainWindow(QMainWindow):
         except Exception as e:
             print(e)
 
+    def closeEvent(self, event):
+        self.controller.uninitialize_before_close()
+        super().closeEvent(event)
+
     def addPushButtonClicked(self, event):
         self.controller.handle_new_record_button()
 
