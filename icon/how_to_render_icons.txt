@@ -1,0 +1,7 @@
+1. Create icon in GIMP in file *.xcf
+2. Choose Save as another *.xcf not to damage source
+3. Download and install script iconify.scm from here:
+https://gist.github.com/YeldhamDev/45d4677fd4849b920c5855653ecce3e9
+4. Run the script - several layers with different icon sizes must
+be created
+5. In GIMP choose 'Export as' and use format 'Microsoft Icon'

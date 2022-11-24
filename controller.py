@@ -1,15 +1,16 @@
-from PyQt6.QtWidgets import QApplication, QMessageBox, QTableWidgetItem, QCheckBox
+from PyQt6.QtWidgets import QApplication, QMessageBox, QTableWidgetItem
 import PyQt6.QtCore as QtCore
 
 import sys
 import traceback
 import threading
 import datetime
+import time
 
 import constants
 from mainwindow import MainWindow
 from model import SchoolBellModel
-from utils import getWeekdayNameByIndex, getWeekdayIndexByName
+from utils import getWeekdayNameByIndex, getWeekdayIndexByName, loadIcon
 from play_sounds.play_sounds_controller import PlaySoundsController
 from play_sounds.play_sounds_thread import main_sounds_thread
 from weekly_schedule_dialog.weekly_schedule_edit_controller import WeeklyScheduleEditController
@@ -22,6 +23,8 @@ class SchoolBellController:
             self.play_sounds_controller = PlaySoundsController(self)
             self.weekly_schedule_edit_controller = WeeklyScheduleEditController(self)
             self.grid_is_refreshing = False
+            self.thread_requested_to_stop = False
+            self.thread_stopped = False
 
         except Exception as e:
             self.handle_error(e)
@@ -29,11 +32,13 @@ class SchoolBellController:
     def run_application(self, application_argv):
         try:
             self.app = QApplication(application_argv)
+            self.app.setWindowIcon(loadIcon('icon\school_bell_icon.ico'))
             self.main_window = MainWindow(self)
             self.main_window.show()
             self.refresh_clock()
             self.model.load_records_from_file()
             self.refresh_grid()
+            self.set_default_column_width()
             self.start_play_sounds_thread()
             sys.exit(self.app.exec())
         except Exception as e:
@@ -142,6 +147,14 @@ class SchoolBellController:
 
         self.grid_is_refreshing = False
 
+    def set_default_column_width(self):
+        grid = self.main_window.ui.scheduleTable
+        grid.setColumnWidth(0, 50)
+        grid.setColumnWidth(1, 150)
+        grid.setColumnWidth(2, 125)
+        grid.setColumnWidth(3, 200)
+        grid.setColumnWidth(4, 200)
+
     def check_box_in_grid_changed(self, item):
 
         if self.grid_is_refreshing:
@@ -186,9 +199,16 @@ class SchoolBellController:
         self.play_sounds_controller.play_sound_file_by_path(file_name_with_full_path)
 
     def start_play_sounds_thread(self):
-        thread = threading.Timer(1, main_sounds_thread, [self])
-        thread.setDaemon(True)
-        thread.start()
+        self.thread_requested_to_stop = False
+        self.thread = threading.Timer(1, main_sounds_thread, [self])
+        self.thread.setDaemon(True)
+        self.thread.start()
+
+    def stop_play_sounds_thread(self):
+        self.thread_stopped = False
+        self.thread_requested_to_stop = True
+        while not self.thread_stopped:
+            time.sleep(0.3)
 
     def refresh_clock(self):
         self.main_window.labelClock.setText(datetime.datetime.now().time().strftime('%H:%M:%S'))
@@ -196,19 +216,13 @@ class SchoolBellController:
     def refresh_playback_status(self):
         if self.play_sounds_controller.is_something_playing():
             self.main_window.labelMessage.setText('Sound is playing')
-            #self.main_window.statusBar().setStyleSheet("QStatusBar{padding-left:8px;background:rgba(255,0,0,255);color:black;font-weight:bold;}")
-            #self.main_window.statusBar().setStyleSheet(
         else:
             self.main_window.labelMessage.setText('')
-            #self.main_window.statusBar().setStyleSheet(
-            #    "QStatusBar{padding-left:8px;background:rgba(255,0,0,255);color:black;font-weight:bold;}")
-            #self.main_window.statusBar().setStyleSheet("background-color:red")
-            #self.main_window.widget.setStyleSheet("background-color:red")
 
     def handle_show_about_dialog(self):
         aboutDialog = AboutDialog()
         aboutDialog.exec()
 
-    def test_play_music(self):
-        self.model.load_records_from_file()
-        self.refresh_grid()
+    def uninitialize_before_close(self):
+        self.stop_play_sounds_thread()
+        self.play_sounds_controller.uninitialize_before_close()

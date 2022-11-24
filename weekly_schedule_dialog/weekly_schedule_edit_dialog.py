@@ -62,7 +62,7 @@ class WeeklyScheduleEditDialog(QDialog):
             if filename_sound == '':
                 return
 
-            self.controller.play_sound_file_for_preview(filename_sound)
+            self.controller.controller.play_sound_file_for_preview(filename_sound)
         except Exception as e:
             if str(e) == 'ModPlug_Load failed':
                 self.main_window.controller.handle_error("Error playing file, check if file has correct format (mp3, "

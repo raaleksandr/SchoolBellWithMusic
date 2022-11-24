@@ -6,6 +6,7 @@ class PlaySoundsModel:
     def __init__(self):
         self.pygame = pygame
         self.pygame.mixer.init()
+        self.initialized = True
 
     def play_the_sound(self, path_to_sound_file):
         try:
@@ -32,8 +33,17 @@ class PlaySoundsModel:
             wait_music_finished()
 
     def is_something_playing(self):
-        return self.pygame.mixer.music.get_busy()
+        if self.initialized:
+            return self.pygame.mixer.music.get_busy()
+        else:
+            return False
 
     def stop_all_sounds(self):
         if self.is_something_playing():
             self.pygame.mixer.music.stop()
+
+    def uninitialize_before_close(self):
+        self.pygame.mixer.music.stop()
+        self.pygame.mixer.quit()
+        self.pygame.quit()
+        self.initialized = False

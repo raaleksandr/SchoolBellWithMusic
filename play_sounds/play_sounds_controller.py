@@ -175,9 +175,5 @@ class PlaySoundsController:
         else:
             return False
 
-    def test_play_music(self):
-        files = []
-        files.append(r'D:\_toarchive\tmp\school-bell\sound_files_for_test\Recording1.mp3')
-        files.append(r'D:\_toarchive\tmp\school-bell\sound_files_for_test\Recording2.mp3')
-        files.append(r'D:\_toarchive\tmp\school-bell\sound_files_for_test\Recording3.mp3')
-        self.play_sounds_model.play_files_as_carusel(files)
+    def uninitialize_before_close(self):
+        self.play_sounds_model.uninitialize_before_close()

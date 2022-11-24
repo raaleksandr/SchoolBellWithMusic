@@ -1,16 +1,23 @@
 import sys, os, calendar
 
 from PyQt6 import uic
+from PyQt6 import QtGui
 
 def loadUi(relative_filename, parentWidget):
-
-    ui_filename = ""
-    if isRunFromPyInstallerExeWithOneFileOption():
-        ui_filename = os.path.join(sys._MEIPASS, relative_filename)
-    else:
-        ui_filename = relative_filename
-
+    ui_filename = correct_filename_if_run_as_exe(relative_filename)
     return uic.loadUi(ui_filename, parentWidget)
+
+def loadIcon(relative_filename):
+    icon_filename = correct_filename_if_run_as_exe(relative_filename)
+    return QtGui.QIcon(icon_filename)
+
+def correct_filename_if_run_as_exe(filename):
+    if isRunFromPyInstallerExeWithOneFileOption():
+        corrected_filename = os.path.join(sys._MEIPASS, filename)
+    else:
+        corrected_filename = filename
+
+    return corrected_filename
 
 def isRunFromPyInstallerExeWithOneFileOption():
     try:
