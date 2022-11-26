@@ -1,7 +1,7 @@
 from os import listdir
 from os.path import isfile, join, splitext
 
-SOUND_EXTENSIONS = ['WAV', 'MP3', 'OGG']
+SOUND_EXTENSIONS = ['MP3', 'WAV', 'OGG']
 
 class PlaySoundsFolderPlayer:
 

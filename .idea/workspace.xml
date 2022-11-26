@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Created and added application icon">
+    <list default="true" id="193aa696-2be0-4de5-9747-328000bd6dbe" name="Changes" comment="Fixed dialogs and icons loading for single exe variant">
+      <change afterPath="$PROJECT_DIR$/create_setup/inno_setup_script_to_create_setup_exe.iss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_files/info_after_installation.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/text_files/info_before_installation.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about_dialog.ui" beforeDir="false" afterPath="$PROJECT_DIR$/about_dialog.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/play_sounds/play_sounds_folder.py" beforeDir="false" afterPath="$PROJECT_DIR$/play_sounds/play_sounds_folder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/weekly_schedule_dialog/weekly_schedule_edit_dialog.py" beforeDir="false" afterPath="$PROJECT_DIR$/weekly_schedule_dialog/weekly_schedule_edit_dialog.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -340,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669324423329</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Fixed dialogs and icons loading for single exe variant">
+      <created>1669330498763</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1669330498763</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -374,6 +385,7 @@
     <MESSAGE value="Added clock to status bar, added 'About' window" />
     <MESSAGE value="Started to fix uninitialization errors" />
     <MESSAGE value="Created and added application icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created and added application icon" />
+    <MESSAGE value="Fixed dialogs and icons loading for single exe variant" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed dialogs and icons loading for single exe variant" />
   </component>
 </project>
