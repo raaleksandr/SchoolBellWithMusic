@@ -1,0 +1,5 @@
+Rings the bell when a lesson starts of finishes
+It is available to set a background music diruing a recess
+It is open source project
+You can download source from github:
+https://github.com/raaleksandr/SchoolBellWithMusic

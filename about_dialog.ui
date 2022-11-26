@@ -52,7 +52,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Rings the bell when a lesson starts or finises</string>
+    <string>Rings the bell when a lesson starts or finishes</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">

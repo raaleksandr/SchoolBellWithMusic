@@ -12,8 +12,15 @@ def loadIcon(relative_filename):
     return QtGui.QIcon(icon_filename)
 
 def correct_filename_if_run_as_exe(filename):
+
+    def delete_path_from_filename(filename_with_path):
+        path_parts = os.path.split(filename_with_path)
+        filename_without_path = path_parts[-1]
+        return filename_without_path
+
     if isRunFromPyInstallerExeWithOneFileOption():
-        corrected_filename = os.path.join(sys._MEIPASS, filename)
+        filename_without_path = delete_path_from_filename(filename)
+        corrected_filename = os.path.join(sys._MEIPASS, filename_without_path)
     else:
         corrected_filename = filename
 

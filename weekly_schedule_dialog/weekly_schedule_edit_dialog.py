@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QDialog, QFileDialog
 
 from utils import loadUi
+from play_sounds.play_sounds_folder import SOUND_EXTENSIONS
 
 class WeeklyScheduleEditDialog(QDialog):
     def __init__(self, controller):
@@ -48,8 +49,17 @@ class WeeklyScheduleEditDialog(QDialog):
             self.ui.singleFileWidget.setVisible(False)
 
     def chooseFilePushButtonClicked(self):
+
+        def get_filter():
+            filter = ""
+            for extension in SOUND_EXTENSIONS:
+                filter = filter + extension + ' (*.' + extension + ');; '
+            filter = filter + 'All files (*.*)'
+            return filter
+
         try:
-            fname = QFileDialog.getOpenFileName(self, 'Open file')
+            fname = QFileDialog.getOpenFileName(self, 'Open file', \
+                                                filter=get_filter())
             if fname[0]:
                 self.ui.fileNameLineEdit.setText(fname[0])
         except Exception as e:
