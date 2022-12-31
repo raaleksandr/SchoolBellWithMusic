@@ -5,5 +5,7 @@ Also it is possible to turn on a music during a recess by specifying a folder. T
 The program is easily installed and needs no SQL server or anything else.
 
 You can download a ready windows installer from the latest release here.
+[here](https://github.com/raaleksandr/SchoolBellWithMusic/releases)
+
 
 The program was tested on windows, but was written with the use of QT and there is a chance to make it to work in a different operating systems.
