@@ -7,5 +7,6 @@ The program is easily installed and needs no SQL server or anything else.
 
 ## Download
 You can download a ready windows installer from the latest release [here.](https://github.com/raaleksandr/SchoolBellWithMusic/releases)
+Feel free to download and complile source code at any time.
 
 The program was tested on windows, but was written with the use of QT and there is a chance to make it to work in a different operating systems.
