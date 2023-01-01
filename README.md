@@ -15,4 +15,15 @@ Feel free to download and complile source code at any time.
 The program was tested on windows, but was written with the use of QT and there is a chance to make it to work in a different operating systems.
 
 # Documentation
-![Employee data](https://github.com/raaleksandr/SchoolBellWithMusic/blob/main/assets/screenshot_main_window.PNG?raw=true)
+## The main screen
+![Main screen](https://github.com/raaleksandr/SchoolBellWithMusic/blob/main/assets/screenshot_main_window.PNG?raw=true)
+Fig. 1 - the main screen
+
+On the main screen you see the list of scheduled records and buttons to Add, Edit or Delete a record.
+
+## The dialog for andding or editing of a record
+For each schedule record you can switch between 2 modes:
+1. Playing a single sound once;
+2. Playing all sound files in a certain folder during a period of time.
+
+### A mode for playing a single sound
