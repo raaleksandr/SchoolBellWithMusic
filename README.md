@@ -36,11 +36,24 @@ You need to fill following fields:
 2. Start day of week - the first day of week when sound will be played;
 3. End day of week - the last day of week when sound will be played;
 4. Time - time of a day when the sound will be played;
-5. Sound file - the file to play. You cannot enter it directly, but rather you should use the button with '...' caption to choose the file with a dialog.
+5. Sound file - the file to play. You cannot fill it directly, but use the button instead with caption '...' to choose the file with a dialog.
 
 Also you can preview your sound with the 'Play' button.
 
-For example on the figure 2 the sound will be played every week from monday till friday at 9 AM.
+The example on figure 2 sets up a sound to be played every week from monday till friday at 9 AM.
 
-### THe mode 'Play all files in folder with rotation during time (music)'
+### The mode 'Play all files in folder with rotation during time (music)'
 ![Play music from folder](https://github.com/raaleksandr/SchoolBellWithMusic/blob/main/assets/screenshot_music_folder.PNG?raw=true)
+Fig.3 - set up a schedule to play all sound files from folder (music)
+
+In order to switch to this mode, you need to select the option 'Play all files in folder with rotation during time (music)'
+
+You need to fill following fields:
+1. Description (optional) - here you can enter any text, which describes a record;
+2. Start day of week - the first day of week when sound will be played;
+3. End day of week - the last day of week when sound will be played;
+4. Start time - time of a day when the playback must start;
+5. End time - time of a day when the playback must end.
+6. Folder - the folder with sound files. You cannot fill it directly, but use the button instead with the caption '...' to choose the file with a dialog.
+
+The example on figure 3 sets up a music to be played every week from monday till friday all the time starting at 9:50:03 AM and ending at 9:55:00 AM.
