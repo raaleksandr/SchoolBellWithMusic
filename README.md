@@ -43,5 +43,4 @@ Also you can preview your sound with the 'Play' button.
 For example on the figure 2 the sound will be played every week from monday till friday at 9 AM.
 
 ### THe mode 'Play all files in folder with rotation during time (music)'
-![Play music from folder](![image](https://user-images.githubusercontent.com/69163585/210179822-84dcb7f0-bf12-41c4-ac53-91360cb82b73.png)
-)
+![Play music from folder](https://github.com/raaleksandr/SchoolBellWithMusic/blob/main/assets/screenshot_music_folder.PNG?raw=true)
